@@ -1,0 +1,23 @@
+#left{
+	padding: 50px;
+}
+
+#right{
+	padding: 50px;
+}
+
+#middle{
+	padding: 50px;
+}
+
+#submit{
+	float: right;
+}
+
+#left{
+	color:#ffffff !Important;
+}
+
+#left h2{
+	color: #99c2ff !Important;
+}

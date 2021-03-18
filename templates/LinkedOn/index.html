@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head lang="en">
+		<!--Required meta tags-->
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=2, shrink-to-fit=no">
+
+		<!--Bootstrap CS-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static "css/index.css" %}">
+		<title>
+            LinkedOn- Connect professionally!
+        </title>
+		
+    </head>
+    <body>
+	<!--The navigation bar was taken from Bootstrap and modified-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand px-5" href="{% url 'LinkedOn:index' %}" >LinkedOn</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About Us </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" id="navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">
+			<a class="dropdown-item" href="#">
+			<form class="form-inline">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			</form>
+			</a>
+          <a class="dropdown-item" href="#">Profiles</a>
+          <a class="dropdown-item" href="#">Job Listings</a>
+        </div>
+      </li>
+		<a type="button" id="signin" href="{% url 'LinkedOn:signin' %}" class="btn btn-light">Sign In</a>  
+		<a type="button" id="signup" href="{% url 'LinkedOn:signup' %}" class="btn btn-primary">Sign Up</a>
+			</ul>
+		</div>
+	</nav>
+
+
+<!--This is the carousel with pictures and text-->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'images/rain.jpeg' %}" alt="First slide">
+	  <div class="carousel-caption d-none d-md-block">
+		<h2>Are you looking for a new job? Or perhaps new employees?</h2>
+		<p>Whether you are a new grad looking for your first job or a business looking to expand- we can help you connect!</p>
+	  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'images/office.jpeg' %}" alt="Second slide">
+	  <div class="carousel-caption d-none d-md-block">
+		<h2>Sick of endless job application forms that go nowhere?</h2>
+		<p>Connect recruiters directly on LinkedOn!</p>
+	  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'images/computer.jpeg' %}" alt="Third slide">
+	  <div class="carousel-caption d-none d-md-block">
+		<h2>Looking to expand your tech startup?</h2>
+		<p>Sign up and find new employees easier than ever!</p>
+	  </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+</div>
+
+
+
+	<!--Required JQuery, Ajax, JavaScript-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
+	
