@@ -15,6 +15,10 @@ body{
 	font-size:20px;
 }
 
+#LinkedOn{
+	color: #99c2ff;
+}
+
 body{
 	background-color:#000000;
 }
@@ -33,7 +37,7 @@ body{
 }
 
 .carousel {
-  width: 65%;
+  width: 100%;
   margin: auto;
   position: sticky;
 }
