@@ -1,49 +1,12 @@
 
-body{
-	font-family:"Crimson-Text";
-}
-
-#signin{
-	position: relative;
-	left: 400px;
-	font-size:20px;
-}
-
-#signup{
-	position:relative;
-	left: 400px;
-	font-size:20px;
-}
-
-#LinkedOn{
-	color: #99c2ff;
-}
-
-body{
-	background-color:#000000;
-}
-
-.navbar-nav{
-	position: sticky;
-	left: 700px;
-	font-size: 20px;
-	font-color:#000000;
-	z-index: 10;
-}
-
-.navbar-brand{
-	position: relative;
-	font-size:30px;
-}
-
 .carousel {
   width: 100%;
-  margin: auto;
   position: sticky;
+  padding: 50px;
 }
 
 .carousel-caption{
-	top:60%;
+	top:30%;
 }
 
 .carousel-caption > p{
@@ -54,4 +17,21 @@ body{
 .carousel-caption > h2{
   font-size: 50px;
   color:#ffffff !Important;
+}
+
+body {
+	color: #ffffff;
+}
+
+h1{
+	font-size: 50px;
+}
+
+p{
+	font-size: 20px;
+}
+
+#text{
+	padding: 50px;
+	position: sticky;
 }

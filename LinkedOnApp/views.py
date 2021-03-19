@@ -10,5 +10,8 @@ def signin(request):
     
 def signup(request):
     return render(request, 'LinkedOn/signup.html')
+    
+def aboutus(request):
+    return render(request, 'LinkedOn/aboutus.html')
 
     
