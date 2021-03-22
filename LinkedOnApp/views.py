@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    response = render(request, 'LinkedOn/index.html')
-    return response
+    return render(request, 'LinkedOn/index.html')
     
 def signin(request):
     return render(request, 'LinkedOn/signin.html')
@@ -13,5 +12,15 @@ def signup(request):
     
 def aboutus(request):
     return render(request, 'LinkedOn/aboutus.html')
+    
+def categories(request):
+    return render(request, 'LinkedOn/categories.html')
+    
+def joblisting(request):
+    return render(request, 'LinkedOn/joblisting.html')
+    
+def profile(request):
+    return render(request, 'LinkedOn/profile.html')
+    
 
     

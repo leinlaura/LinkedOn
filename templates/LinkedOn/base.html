@@ -34,18 +34,13 @@
 					<a class="nav-link" href="{% url 'LinkedOn:aboutus' %}">About Us </a> <!--About Us link-->
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" href="{% url 'LinkedOn:categories' %}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Categories <!--Categories-->
 					</a>
 				<div class="dropdown-menu" id="navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="#">
-				<form class="form-inline">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> <!--Search button-->
-				</form>
-					</a>
 					<!--dropdown list items-->
-					<a class="dropdown-item" href="#">Profiles</a> 
-					<a class="dropdown-item" href="#">Job Listings</a>
+					<a class="dropdown-item" href="{% url 'LinkedOn:profile' %}">Profiles</a> 
+					<a class="dropdown-item" href="{% url 'LinkedOn:joblistings' %}">Job Listings</a>
 				</div>
 			</li>
 			<!-- sign in and sign out buttons-->
