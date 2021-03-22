@@ -23,13 +23,13 @@ class JobListing(models.Model):
     ID_MAX_LENGTH = 128
     DESCRIPTION_MAX_LENGTH = 1000
     
-    ID = models.CharField(max_length=ID_MAX_LENGTH, unique=True)
+    job_id = models.CharField(max_length=ID_MAX_LENGTH, unique=True)
     employer = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     description = models.CharField(max_length=DESCRIPTION_MAX_LENGTH)
     
     def __str__(self):
-        return self.ID
-    
+        return self.job_id
+        
 class Category(models.Model):
     NAME_MAX_LENGTH = 128
     
