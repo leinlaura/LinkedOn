@@ -52,6 +52,14 @@ Sign Up
 			</br>
 			<textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10" ></textarea>
 			</br>
+			<div class="form-group">
+				<select class="form-control" id="exampleFormControlSelect1">
+				  {% for c in categories %}
+				  <option>{{ c.name }}</option>
+				 {% endfor %}
+				</select>
+			</div>
+			</br>
 			<button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
 		</div>
 	</div>

@@ -1,3 +1,4 @@
+from LinkedOnApp.models import Category
 from django.shortcuts import render
 from django.http import HttpResponse
 from LinkedOnApp.forms import UserForm, UserProfileForm
@@ -45,10 +46,11 @@ def signup(request):
             profile.user = user
             if 'profileImage' in request.FILES:
                 profile.profileImage = request.FILES['profileImage']
-
             profile.save()
-
-    return render(request, 'LinkedOn/signup.html')
+            
+    context_dic = {}
+    context_dic["categories"] = Category.objects.all()
+    return render(request, 'LinkedOn/signup.html', context_dic)
 
 def user_logout(request):
     logout(request)
