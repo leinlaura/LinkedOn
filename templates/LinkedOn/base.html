@@ -38,14 +38,22 @@
 					Categories <!--Categories-->
 					</a>
 				<div class="dropdown-menu" id="navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="{% url 'LinkedOn:categories' %}">Search</a>
 					<!--dropdown list items-->
+					{% if user.is_authenticated %}
 					<a class="dropdown-item" href="{% url 'LinkedOn:profile' %}">Profiles</a> 
 					<a class="dropdown-item" href="{% url 'LinkedOn:joblistings' %}">Job Listings</a>
+					{% endif %}
 				</div>
 			</li>
 			<!-- sign in and sign out buttons-->
+			{% if user.is_authenticated %}
+			<a type="button" id="logout" href="{% url 'LinkedOn:logout' %}" class="btn btn-primary">Log Out</a> 
+			
+			{% else %}
 			<a type="button" id="signin" href="{% url 'LinkedOn:signin' %}" class="btn btn-light">Sign In</a>  
 			<a type="button" id="signup" href="{% url 'LinkedOn:signup' %}" class="btn btn-primary">Sign Up</a>
+			{% endif %}
 			</ul>
 			</div>
 		</nav>

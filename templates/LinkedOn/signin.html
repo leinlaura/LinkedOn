@@ -17,14 +17,15 @@ Sign In
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <form id= "login_form" method="post"  action="{% url 'LinkedOn:signin' %}" class="form-signin">
+              {% csrf_token %}
+			  <div class="form-label-group">
+                <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                 <label for="inputEmail">Email address</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <label for="inputPassword">Password</label>
               </div>
 
@@ -32,7 +33,7 @@ Sign In
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+              <button class="btn btn-lg btn-primary btn-block" value="submit" type="submit">Sign in</button>
               <hr class="my-4">
             </form>
 			<h5> Don't have an account yet? </h5>

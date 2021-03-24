@@ -33,7 +33,7 @@ class UserProfile(models.Model):
     company = models.CharField(max_length= COMPANY_MAX_LENGTH, blank=True)
     about = models.CharField(max_length=ABOUT_MAX_LENGTH, blank=True)
     searchingInfo = models.CharField(max_length=SEARCHING_MAX_LENGTH, blank=True)
-    profileImage = models.ImageField(blank=True)
+    profileImage = models.ImageField(upload_to='profile_images', blank=True)
     isEmployer = models.BooleanField()
     
     def __str__(self):

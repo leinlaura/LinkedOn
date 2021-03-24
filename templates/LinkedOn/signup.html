@@ -1,0 +1,61 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/signup.css" %}">
+{% endblock %}
+
+{% block title_block %}
+Sign Up
+{% endblock %}
+
+{% block body_block %}
+	<!--general forms taken from https://getbootstrap.com/docs/4.0/components/forms/-->
+	<form id="user_form" method="post" action="{% url 'LinkedOn:signup' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+	<div class="row">
+		<!--left column-->
+		<div class="col-md-4" id="left">
+		<h1> Don't have an account? </h1>
+		<h2> Register here! </h2>
+		<h4> Select whether you are looking for a job or looking to hire and then provide as much detail as you are comfortable with! </h4>
+		</div>
+
+		<!--middle column-->
+		<div class="col-md-4" id="middle">
+				<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+				  <input type="radio" class="btn-check" name="btnradio" id="jobseeker" autocomplete="off" checked>
+				  <label class="btn btn-outline-primary" for="jobseeker">Job Seeker</label>
+				  <input type="radio" class="btn-check" name="btnradio" id="employer" autocomplete="off">
+				  <label class="btn btn-outline-primary" for="employer">Employer</label>
+				</div>
+				</br>
+				</br>
+				<textarea name="first_name" class="form-control"  placeholder="First Name" rows="1"></textarea>
+				</br>
+				<textarea name="last_name" class="form-control"  placeholder="Last Name" rows="1"></textarea>
+				</br>
+				<textarea name="company" class="form-control"  placeholder="Company" rows="1"></textarea>
+				</br>
+				<input name ="username" type="email" class="form-control" placeholder="name@example.com">
+				</br>
+				<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
+				</br>
+				<textarea name="website" class="form-control" placeholder="Portfolio/ Website" rows="1" ></textarea>
+				</br>
+				<input name="profileImage" class="form-control form-control-sm" id="formFileSm" type="file" label="Profile Picture">
+		</div>
+
+		<!--right column-->
+		<div class="col-md-4" id="right">
+			<textarea name="about" class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5" ></textarea>
+			</br>
+			<textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10" ></textarea>
+			</br>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
+		</div>
+	</div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/aboutus.js' %}"></script>
+{% endblock %}
