@@ -22,29 +22,28 @@ Sign Up
 		
 		<!--middle column-->
 		<div class="col-md-4" id="middle">
-				<textarea class="form-control"  placeholder="First Name" rows="1"></textarea>
+				<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+				  <input type="radio" class="btn-check" name="btnradio" id="jobseeker" autocomplete="off" checked>
+				  <label class="btn btn-outline-primary" for="jobseeker">Job Seeker</label>
+				  <input type="radio" class="btn-check" name="btnradio" id="employer" autocomplete="off">
+				  <label class="btn btn-outline-primary" for="employer">Employer</label>
+				</div>		
 				</br>
-				<textarea class="form-control" placeholder="Last Name" rows="1" ></textarea>
+				</br>
+				<textarea class="form-control"  placeholder="Full Name/ Company name" rows="1"></textarea>
 				</br>
 				<input type="email" class="form-control" placeholder="name@example.com">
 				</br>
 				<input type="password" id="inputPassword" class="form-control" placeholder="Password">
 				</br>
-				<textarea class="form-control" placeholder="Portfolio/ Website" rows="1" ></textarea>
-				</br>
-				<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-				  <label class="btn btn-outline-primary" for="btnradio1">Job Seeker</label>
-				  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-				  <label class="btn btn-outline-primary" for="btnradio2">Employer</label>
-				</div>			
+				<textarea class="form-control" placeholder="Portfolio/ Website" rows="1" ></textarea>	
 		</div>
 		
 		<!--right column-->
 		<div class="col-md-4" id="right">
-			<textarea class="form-control" placeholder="Describe yourself in three sentences!" rows="5" ></textarea>
+			<textarea class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5" ></textarea>
 			</br>
-			<textarea class="form-control" placeholder="Who are what are you looking for? Go into detail here!" rows="10" ></textarea>
+			<textarea class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10" ></textarea>
 			</br>
 			<input class="form-control form-control-sm" id="formFileSm" type="file">
 			</br>
@@ -52,4 +51,6 @@ Sign Up
 		</div>
 	</div>
 <form>
+<script src=""https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/aboutus.js' %}"></script>
 {% endblock %}

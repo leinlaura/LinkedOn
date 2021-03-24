@@ -1,4 +1,16 @@
-.jumbatron{
-background-color: #0275d8; /* Orange */
-  color: #ffffff;
+h1 {
+	color:#ffffff !Important;
+	text-align: center;
+}
+
+h3 {
+	color: #0275d8 !Important;
+	text-align: center;
+}
+
+.carousel{
+	margin: auto;
+	width: 70%;
+	padding: 30px;
+	position: sticky;
 }
