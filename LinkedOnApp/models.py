@@ -5,12 +5,14 @@ class UserProfile(models.Model):
     ABOUT_MAX_LENGTH = 1000
     SEARCHING_MAX_LENGTH = 1000
     WEBSITE_MAX_LENGTH = 128
+    COMPANY_MAX_LENGTH = 128
     
     #user includes username, password, email, firstname, lastname.
     #Could have users input their email as the 'username'
     user = models.OneToOneField(User, on_delete=models.CASCADE) 
     #category : still figuring this out. will get back to it
     website = models.CharField(max_length=WEBSITE_MAX_LENGTH, blank=True)
+    company = models.CharField(max_length= COMPANY_MAX_LENGTH, blank=True);
     about = models.CharField(max_length=ABOUT_MAX_LENGTH, blank=True)
     searchingInfo = models.CharField(max_length=SEARCHING_MAX_LENGTH, blank=True)
     profileImage = models.ImageField(blank=True)
