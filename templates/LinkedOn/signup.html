@@ -11,7 +11,8 @@ Sign Up
 
 {% block body_block %}	
 	<!--general forms taken from https://getbootstrap.com/docs/4.0/components/forms/-->
-	<form>
+<form id="user_form" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
 	<div class="row">
 		<!--left column-->
 		<div class="col-md-4" id="left">
@@ -51,10 +52,10 @@ Sign Up
 			</br>
 			<textarea class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10" ></textarea>
 			</br>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
+			<input class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="Register">Submit</input>
 		</div>
 	</div>
-<form>
+</form>
 <script src=""https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/aboutus.js' %}"></script>
 {% endblock %}
