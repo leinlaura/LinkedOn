@@ -74,13 +74,25 @@ def categories(request):
     #returns
     return render(request, 'LinkedOn/categories.html', context_dic)
 
+@login_required
+def show_category(request, category_name_slug):
+    context_dict = {}
+
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        context_dict['category']= category
+        
+    except Category.DoesNotExist:
+        context_dict['category']=None
+        
+    return render(request, 'LinkedOn/show_category.html')
 
 @login_required
-def joblisting(request):
+def joblistings(request):
     return render(request, 'LinkedOn/joblisting.html')
 
 @login_required
-def profile(request):
+def profiles(request):
     return render(request, 'LinkedOn/profile.html')
     
     

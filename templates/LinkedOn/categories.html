@@ -30,20 +30,20 @@ Search for Categories
 <div class="row">
 <div class="col-md-4">
 {% for c1 in first_col %}
-<h2 href="#"> {{ c1.name }} </h2>
+<h2> <a href="{% url 'LinkedOn:show_category' c1.slug %}"> {{ c1.name }} </a> </h2>
 {% endfor %}
 </div>
 
 <div class="col-md-4">
 {% for c2 in second_col %}
-<h2 href="#"> {{ c2.name }} </h2>
+<h2> <a href="{% url 'LinkedOn:show_category' c2.slug %}"> {{ c2.name }} </a> </h2>
 {% endfor %}
 </div>
 
 
 <div class="col-md-4">
 {% for c3 in third_col %}
-<h2 href="#"> {{ c3.name }} </h2>
+<h2> <a href="{% url 'LinkedOn:show_category' c3.slug %}"> {{ c3.name }} </a> </h2>
 {% endfor %}
 </div>
 </div>
