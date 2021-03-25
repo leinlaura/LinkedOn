@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import redirect
+import math
 
 def index(request):
     return render(request, 'LinkedOn/index.html')
@@ -23,12 +24,9 @@ def signin(request):
                 login(request, user)
                 return redirect(reverse('LinkedOn:index'))
 
-            else:
-                return HttpResponse("Your LinkedOn account is disabled.")
-
         else:
             print(f"Invalid login details:{username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
+            render(request, 'LinkedOn/signin.html', {"error":"Wrong email or password"})
 
     return render(request, 'LinkedOn/signin.html')
             
@@ -61,7 +59,20 @@ def aboutus(request):
 
 
 def categories(request):
-    return render(request, 'LinkedOn/categories.html')
+    context_dic = {}
+    categories = Category.objects.all() #get all categories
+    categories_length = Category.objects.all().count() #get length of categories
+    
+    #there will be three columns and hence they are divided by 3
+    length_of_col = math.floor(categories_length/3) 
+    
+    #three colummns
+    context_dic["first_col"]= categories[:length_of_col]
+    context_dic["second_col"] = categories[length_of_col:2*length_of_col]
+    context_dic["third_col"]= categories[2*length_of_col:]
+    
+    #returns
+    return render(request, 'LinkedOn/categories.html', context_dic)
 
 
 @login_required

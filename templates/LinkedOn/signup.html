@@ -24,9 +24,9 @@ Sign Up
 		<!--middle column-->
 		<div class="col-md-4" id="middle">
 				<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-				  <input type="radio" class="btn-check" name="btnradio" id="jobseeker" autocomplete="off" checked>
+				  <input type="radio" class="btn-check" id="jobseeker" name="button" autocomplete="off" checked>
 				  <label class="btn btn-outline-primary" for="jobseeker">Job Seeker</label>
-				  <input type="radio" class="btn-check" name="btnradio" id="employer" autocomplete="off">
+				  <input type="radio" class="btn-check" name="button" id="employer" autocomplete="off">
 				  <label class="btn btn-outline-primary" for="employer">Employer</label>
 				</div>
 				</br>
@@ -54,6 +54,7 @@ Sign Up
 			</br>
 			<div class="form-group">
 				<select class="form-control" id="exampleFormControlSelect1">
+					<option> Select Category </option>
 				  {% for c in categories %}
 				  <option>{{ c.name }}</option>
 				 {% endfor %}
@@ -64,6 +65,4 @@ Sign Up
 		</div>
 	</div>
 </form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{% static 'js/aboutus.js' %}"></script>
 {% endblock %}

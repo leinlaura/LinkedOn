@@ -1,0 +1,50 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/categories.css" %}">
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block title_block %}
+Search for Categories
+{% endblock %}
+
+
+{% block body_block %}
+	<!--Search form-->
+	<form>
+	  <input type="search" class="form-control rounded" placeholder="Search..." aria-label="Search"
+		aria-describedby="search-addon"/>
+	</form>
+
+
+<!--if user isnt logged in prompt to log in to view other content-->
+{% if user.is_authenticated %}
+<h5> Browse by category or search for job listings, profiles and categories! </h5>
+{% else %}
+<h5> To be able to view job listings and profiles associated with categories, please sign in! </h5>
+{% endif %}
+<!--three rows of categories-->
+<div class="row">
+<div class="col-md-4">
+{% for c1 in first_col %}
+<h2 href="#"> {{ c1.name }} </h2>
+{% endfor %}
+</div>
+
+<div class="col-md-4">
+{% for c2 in second_col %}
+<h2 href="#"> {{ c2.name }} </h2>
+{% endfor %}
+</div>
+
+
+<div class="col-md-4">
+{% for c3 in third_col %}
+<h2 href="#"> {{ c3.name }} </h2>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

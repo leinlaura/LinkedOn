@@ -1,0 +1,21 @@
+.form-control{
+	margin: auto;
+	width: 25%;
+	margin-top: 20px;
+}
+
+h2 {
+	position: relative;
+	text-align: center;
+	width:100%;
+	margin-top: 50px;
+	color: #ffffff !Important;
+}
+
+h5 {
+	text-align: center;
+	color: #0275d8 !Important;
+	margin-top: 20px;
+}
+	
+
