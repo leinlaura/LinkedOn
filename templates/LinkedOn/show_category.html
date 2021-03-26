@@ -2,14 +2,23 @@
 {% load staticfiles %}
 
 {% block head_block %}
+<link rel="stylesheet" href="{% static "css/show_category.css" %}">
 {% endblock %}
 
 {% block title_block %}
-
+{{ category.name }} 
 {% endblock %}
 
 {% block body_block %}
+<h1> {{ category.name }} </h1>
 
+<div class="row">
 
+{% for p in first_col %}
+<h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
+<h1> {{ p.ProfileImage }} </h1>
+<img src="media/profile_images/{{ p.ProfileImage }}" alt="profile picture" />
+{% endfor %}
+</div>
 
 {% endblock %}
