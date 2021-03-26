@@ -27,8 +27,11 @@ class UserProfile(models.Model):
     
     #user includes username, password, email, firstname, lastname.
     #Could have users input their email as the 'username'
+    # Company is for employers only.
+    # Category, about, searchinginfo is for kobseekers only.
     user = models.OneToOneField(User, on_delete=models.CASCADE) 
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, 
+                                 null=True, blank=True)
     website = models.CharField(max_length=WEBSITE_MAX_LENGTH, blank=True)
     company = models.CharField(max_length= COMPANY_MAX_LENGTH, blank=True)
     about = models.CharField(max_length=ABOUT_MAX_LENGTH, blank=True)
@@ -45,6 +48,7 @@ class JobListing(models.Model):
     
     job_id = models.CharField(max_length=ID_MAX_LENGTH, unique=True)
     employer = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True)
     description = models.CharField(max_length=DESCRIPTION_MAX_LENGTH)
     
     def __str__(self):
