@@ -40,8 +40,6 @@ def signup(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
-            print(request.POST, request.POST.get('button', ['off']), request.POST.get('button', ['off']) == ['on'])
-            # profile.isEmployer = request.POST.get('employer', ['off']) == ['on']
 
             if 'profileImage' in request.FILES:
                 profile.profileImage = request.FILES['profileImage']
