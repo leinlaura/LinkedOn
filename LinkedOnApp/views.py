@@ -31,7 +31,6 @@ def signup(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST)
-        print(request.POST)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             plain_text_password = user.password
