@@ -2,71 +2,71 @@
 {% load staticfiles %}
 
 <html>
-    <head lang="en">
-		<!--Required meta tags-->
-        <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=2, shrink-to-fit=no">
-		
-		<!--Bootstrap CS-->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        {% block head_block %}
-		{% endblock %}
-		<!--css specific to the header and footer-->
-		<link rel="stylesheet" href="{% static "css/base.css" %}">
-		<title>
-			LinkedOn- 
-			{% block title_block %}
+<head lang="en">
+    <!--Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2, shrink-to-fit=no">
+
+    <!--Bootstrap CS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!--Required JQuery, Ajax, JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block head_block %}
+    {% endblock %}
+    <!--css specific to the header and footer-->
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <title>
+        LinkedOn-
+        {% block title_block %}
             Connect professionally!
-			{% endblock %}
-        </title>
-	</head>
-    <body>
-		<!--The navigation bar was taken from Bootstrap and modified-->
-		<!-- source:-->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand px-5" id="LinkedOn" href="{% url 'LinkedOn:index' %}" >LinkedOn</a> <!--Home button-->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="{% url 'LinkedOn:aboutus' %}">About Us </a> <!--About Us link-->
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="{% url 'LinkedOn:categories' %}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Categories <!--Categories-->
-					</a>
-				<div class="dropdown-menu" id="navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="{% url 'LinkedOn:categories' %}">Search</a>
-					<!--dropdown list items-->
-					{% if user.is_authenticated %}
-					<a class="dropdown-item" href="{% url 'LinkedOn:profile' %}">Profiles</a> 
-					<a class="dropdown-item" href="{% url 'LinkedOn:joblistings' %}">Job Listings</a>
-					{% endif %}
-				</div>
-			</li>
-			<!-- sign in and sign out buttons-->
-			{% if user.is_authenticated %}
-			<a type="button" id="logout" href="{% url 'LinkedOn:logout' %}" class="btn btn-primary">Log Out</a> 
-			
-			{% else %}
-			<a type="button" id="signin" href="{% url 'LinkedOn:signin' %}" class="btn btn-light">Sign In</a>  
-			<a type="button" id="signup" href="{% url 'LinkedOn:signup' %}" class="btn btn-primary">Sign Up</a>
-			{% endif %}
-			</ul>
-			</div>
-		</nav>
-        <div>
-        {% block body_block %}
         {% endblock %}
-        </div>
-		
-		<!--Required JQuery, Ajax, JavaScript-->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+    </title>
+</head>
+<body>
+<!--The navigation bar was taken from Bootstrap and modified-->
+<!-- source:-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand px-5" id="LinkedOn" href="{% url 'LinkedOn:index' %}">LinkedOn</a> <!--Home button-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'LinkedOn:aboutus' %}">About Us </a> <!--About Us link-->
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{% url 'LinkedOn:categories' %}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories <!--Categories-->
+                </a>
+                <div class="dropdown-menu" id="navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'LinkedOn:categories' %}">Search</a>
+                    <!--dropdown list items-->
+                    {% if user.is_authenticated %}
+                        <a class="dropdown-item" href="{% url 'LinkedOn:profile' %}">Profiles</a>
+                        <a class="dropdown-item" href="{% url 'LinkedOn:joblistings' %}">Job Listings</a>
+                    {% endif %}
+                </div>
+            </li>
+            <!-- sign in and sign out buttons-->
+            {% if user.is_authenticated %}
+                <a type="button" id="logout" href="{% url 'LinkedOn:logout' %}" class="btn btn-primary">Log Out</a>
+
+            {% else %}
+                <a type="button" id="signin" href="{% url 'LinkedOn:signin' %}" class="btn btn-light">Sign In</a>
+                <a type="button" id="signup" href="{% url 'LinkedOn:signup' %}" class="btn btn-primary">Sign Up</a>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<div>
+    {% block body_block %}
+    {% endblock %}
+</div>
+</body>
 </html>
 
 

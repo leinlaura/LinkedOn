@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body_block %}
+    <script src="{% static "js/signup.js" %}"></script>
     <!--general forms taken from https://getbootstrap.com/docs/4.0/components/forms/-->
     <form id="user_form" method="post" action="{% url 'LinkedOn:signup' %}" enctype="multipart/form-data">
         {% csrf_token %}
@@ -43,7 +44,9 @@
                 </br>
                 <textarea name="website" class="form-control" placeholder="Portfolio/ Website" rows="1"></textarea>
                 </br>
-                <input name="profileImage" class="form-control form-control-sm" id="formFileSm" type="file" label="Profile Picture">
+                <input name="profileImage" class="form-control form-control-sm" id="formFileSm" type="file">
+                </br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
             </div>
 
             <!--right column-->
@@ -61,7 +64,6 @@
                     </select>
                 </div>
                 </br>
-                <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
             </div>
         </div>
     </form>
