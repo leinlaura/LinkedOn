@@ -1,4 +1,4 @@
-textarea, input, .btn-group {
+textarea, input, .form-control, .btn-group {
     margin-bottom: 25px;
 }
 
