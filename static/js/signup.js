@@ -1,4 +1,5 @@
 $(function () {
+    $('#formCompany').hide();
 
     $("#jobseeker").click(function () {
         $("#right").show();
