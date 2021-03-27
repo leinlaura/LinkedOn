@@ -1,23 +1,27 @@
-#left{
-	padding: 50px;
+textarea, input, .btn-group {
+    margin-bottom: 5px;
 }
 
-#right{
-	padding: 50px;
+#left {
+    padding: 50px;
 }
 
-#middle{
-	padding: 50px;
+#right {
+    padding: 50px;
 }
 
-#submit{
-	float: right;
+#middle {
+    padding: 50px;
 }
 
-#left{
-	color:#ffffff !Important;
+#submit {
+    float: right;
 }
 
-#left h2{
-	color: #0275d8 !Important;
+#left {
+    color: #ffffff !Important;
+}
+
+#left h2 {
+    color: #0275d8 !Important;
 }
