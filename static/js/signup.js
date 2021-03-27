@@ -2,6 +2,7 @@ $(function () {
 
     $("#jobseeker").click(function () {
         $("#right").show();
+        $('#formFileSm').show();
         $('#formCompany').hide();
     });
 
