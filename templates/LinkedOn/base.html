@@ -46,7 +46,7 @@
                     <a class="dropdown-item" href="{% url 'LinkedOn:categories' %}">Search</a>
                     <!--dropdown list items-->
                     {% if user.is_authenticated %}
-                        <a class="dropdown-item" href="{% url 'LinkedOn:profile' %}">Profiles</a>
+                        <a class="dropdown-item" href="{% url 'LinkedOn:profiles' %}">Profiles</a>
                         <a class="dropdown-item" href="{% url 'LinkedOn:joblistings' %}">Job Listings</a>
                     {% endif %}
                 </div>

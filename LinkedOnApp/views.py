@@ -82,27 +82,31 @@ def categories(request):
 @login_required
 def show_category(request, category_name_slug):
     context_dic = {}
-
-    try:
-        category = Category.objects.get(slug=category_name_slug)
-        context_dic['category']= category
-        #get profiles where the category matches and they are not employers
-        profiles = UserProfile.objects.filter(category =category, isEmployer = False)
-        profileNumber = profiles.count() #number of profiles in that category
-        length_of_col = math.ceil(profileNumber/3)  #number of profiles in a column
-        
-        #three colummns
-        context_dic["first_col"]= profiles[:length_of_col]
-        context_dic["second_col"] = profiles[length_of_col:2*length_of_col]
-        context_dic["third_col"]= profiles[2*length_of_col:]
-        
-        
-        #context_dic["profileNumber"] = profileNumber
-        context_dic["profiles"] = profiles
-        
-    except Category.DoesNotExist:
-        context_dic['category']=None
-        context_dic["profiles"]=None
+    
+    if request.user.is_authenticated():
+        try:
+            category = Category.objects.get(slug=category_name_slug)
+            context_dic['category']= category
+            #get profiles where the category matches and they are not employers
+            profiles = UserProfile.objects.filter(category =category, isEmployer = False)
+            profileNumber = profiles.count() #number of profiles in that category
+            length_of_col = math.ceil(profileNumber/3)  #number of profiles in a column
+            
+            #three colummns
+            context_dic["first_col"]= profiles[:length_of_col]
+            context_dic["second_col"] = profiles[length_of_col:2*length_of_col]
+            context_dic["third_col"]= profiles[2*length_of_col:]
+            
+            
+            #context_dic["profileNumber"] = profileNumber
+            context_dic["profiles"] = profiles
+            
+        except Category.DoesNotExist:
+            context_dic['category']=None
+            context_dic["profiles"]=None
+    
+    else:
+        return redirect(reverse('LinkedOn:signin'))
         
     return render(request, 'LinkedOn/show_category.html', context_dic)
 
