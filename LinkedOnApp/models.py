@@ -28,7 +28,7 @@ class UserProfile(models.Model):
     #user includes username, password, email, firstname, lastname.
     #Could have users input their email as the 'username'
     # Company is for employers only.
-    # Category, about, searchinginfo is for kobseekers only.
+    # Category, about, searchinginfo is for jobseekers only.
     user = models.OneToOneField(User, on_delete=models.CASCADE) 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, 
                                  null=True, blank=True)

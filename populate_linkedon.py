@@ -4,6 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 import django
 django.setup()
 from django.contrib.auth.models import User
+from django.core.files import File
 from LinkedOnApp.models import UserProfile, JobListing, Category
 
 def populate():
@@ -70,7 +71,8 @@ def populate():
                        "who specialises in Java and Python.",
              'searchinginfo': "I am looking for a job in software "
                              "engineering. I believe I have much to "
-                             "offer to employers."},
+                             "offer to employers.",
+             'profileimage' : 'awhite'},
             {'username' : 'mei3849@gmailfr.fr',
              'password' : '3494nabdf89',
              'firstname' : 'Mei',
@@ -81,7 +83,8 @@ def populate():
                          "years. I speak French, English and Italian.",
              'searchinginfo': "I am looking for a job in education "
                              "as I believe I have the relevant skills and  "
-                             "experience."},
+                             "experience.",
+             'profileimage' : 'mei3849'},
             {'username' : 'mathewmcb@outlookmail.com',
              'password' : 'charlixcxfan99',
              'firstname' : 'Mathew',
@@ -90,7 +93,8 @@ def populate():
              'website' : 'www.github.com/awhite',
              'about' : "I am Mathew, a hard working engineer from London.",
              'searchinginfo': "I'm looking to expand my horizons and look "
-                             "for new opportunities."},
+                             "for new opportunities.",
+             'profileimage' : 'mathewmcb'},
             {'username' : 'henryhoover5@outlookmail.com',
              'password' : 'numatic8347',
              'firstname' : 'Henry',
@@ -100,7 +104,8 @@ def populate():
              'about' : "My name is Henry. I have been working in the "
                          "hospitality sector for a long time.",
              'searchinginfo': "I am looking for a job as a full time cleaner "
-                             "or cleaning manager. "},
+                             "or cleaning manager. ",
+             'profileimage' : 'henryhoover5'},
             ]
     
     jobpostings = [
@@ -164,6 +169,13 @@ def create_jobseeker(data, u):
                                                 searchingInfo=
                                                 data['searchinginfo'],
                                                 isEmployer=False)[0]
+    
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(THIS_FOLDER +  '\\populationimages\\' 
+                            + data['profileimage'] + '.PNG')
+    
+    with open(filepath, 'rb') as f:
+        profile.profileImage.save(u.username + '.png', f)
     print("Created profile: " + str(profile))
     profile.save()
     return profile
