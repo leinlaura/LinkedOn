@@ -47,7 +47,7 @@ class JobListing(models.Model):
     DESCRIPTION_MAX_LENGTH = 1000
     
     job_id = models.CharField(max_length=ID_MAX_LENGTH, unique=True)
-    employer = models.ForeignKey(User, on_delete=models.CASCADE)
+    employer = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True)
     description = models.CharField(max_length=DESCRIPTION_MAX_LENGTH)
     

@@ -1,0 +1,24 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/joblistings.css" %}">
+{% endblock %}
+
+{% block title_block %}
+Browse Joblistings
+{% endblock %}
+
+{% block body_block %}
+
+<h1> Job Listings </h1>
+<div class="row">
+{% for j in joblistings %}
+		<div class="col-md-4">
+        <h2> {{ j.employer.company }} </h2> 
+		<p> {{ j.description }} </p>
+		</div>
+{% endfor %}
+</div>
+
+{% endblock %}

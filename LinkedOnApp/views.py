@@ -1,4 +1,4 @@
-from LinkedOnApp.models import Category, UserProfile
+from LinkedOnApp.models import Category, UserProfile, JobListing
 from django.shortcuts import render
 from LinkedOnApp.forms import UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
@@ -88,16 +88,6 @@ def show_category(request, category_name_slug):
         context_dic['category']= category
         #get profiles where the category matches and they are not employers
         profiles = UserProfile.objects.filter(category =category, isEmployer = False)
-        profileNumber = profiles.count() #number of profiles in that category
-        length_of_col = math.ceil(profileNumber/3)  #number of profiles in a column
-            
-        #three colummns
-        context_dic["first_col"]= profiles[:length_of_col]
-        context_dic["second_col"] = profiles[length_of_col:2*length_of_col]
-        context_dic["third_col"]= profiles[2*length_of_col:]
-            
-            
-        #context_dic["profileNumber"] = profileNumber
         context_dic["profiles"] = profiles
             
     except Category.DoesNotExist:
@@ -109,12 +99,18 @@ def show_category(request, category_name_slug):
 
 @login_required
 def joblistings(request):
-    return render(request, 'LinkedOn/joblisting.html')
+    context_dic = {}
+    joblistings = JobListing.objects.all()
+    context_dic["joblistings"] = joblistings
+    return render(request, 'LinkedOn/joblistings.html', context_dic)
 
 
 @login_required
 def profiles(request):
-    return render(request, 'LinkedOn/profile.html')
+    profiles = UserProfile.objects.filter(isEmployer = False) #filter profiles to jobseekers
+    context_dic = {}
+    context_dic["profiles"] = profiles
+    return render(request, 'LinkedOn/profiles.html', context_dic)
 
 
 def attempt_login(request, username, password):

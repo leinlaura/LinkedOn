@@ -2,17 +2,15 @@
 {% load staticfiles %}
 
 {% block head_block %}
-<link rel="stylesheet" href="{% static "css/show_category.css" %}">
+<link rel="stylesheet" href="{% static "css/profiles.css" %}">
 {% endblock %}
 
 {% block title_block %}
-{{ category.name }} 
+Browse Profiles
 {% endblock %}
 
 {% block body_block %}
-<div class="text">
-<h1> {{ category.name }} </h1>
-
+<h1> Profiles </h1>
 <div class="row">
 {% for p in profiles %}
 		<div class="col-md-4">
@@ -22,6 +20,5 @@
 		</div>
 {% endfor %}
 </div>
-
 
 {% endblock %}
