@@ -3,3 +3,25 @@ h1 {
 	padding-top: 20px;
 	color: #ffffff !Important;
 }
+
+h2{
+	padding-left:40px;
+	padding-bottom:5px;
+	color: #0275d8 !Important;
+}
+
+img {
+	width: 80%;
+	position: sticky;
+	padding-left: 40px;
+	padding-right: 50px;
+}
+
+h5{
+	padding-left: 40px;
+	padding-top: 5px;
+	color: #ffffff !Important;
+	width: 80%;
+	position: sticky;
+}
+	

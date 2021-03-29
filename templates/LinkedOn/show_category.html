@@ -10,15 +10,36 @@
 {% endblock %}
 
 {% block body_block %}
+<div class="text">
 <h1> {{ category.name }} </h1>
 
 <div class="row">
 
+<div class="col-md-4">
 {% for p in first_col %}
 <h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
-<h1> {{ p.ProfileImage }} </h1>
-<img src="media/profile_images/{{ p.ProfileImage }}" alt="profile picture" />
+<img src="{{ p.profileImage.url }}" alt="profile picture" />
+<h5> {{ p.about }} </h5>
 {% endfor %}
+</div>
+
+<div class="col-md-4">
+{% for p in second_col %}
+<h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
+<img src="{{ p.profileImage.url }}" alt="profile picture" />
+<h5> {{ p.about }} </h5>
+{% endfor %}
+</div>
+
+<div class="col-md-4">
+{% for p in third_col %}
+<h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
+<img src="{{ p.profileImage.url }}" alt="profile picture" />
+<h5> {{ p.about }} </h5>
+{% endfor %}
+</div>
+
+</div>
 </div>
 
 {% endblock %}

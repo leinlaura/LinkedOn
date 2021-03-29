@@ -24,7 +24,7 @@ from LinkedOnApp import views
 urlpatterns = [
     path('', views.index, name= 'index'),
     path('LinkedOn/', include('LinkedOnApp.urls')),
-    # The above maps any URLs starting with rango/ to be handled by LinkedOn.
+    # The above maps any URLs starting with LinkedOn/ to be handled by LinkedOn.
     path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
