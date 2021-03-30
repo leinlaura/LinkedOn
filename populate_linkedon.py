@@ -73,6 +73,7 @@ def populate():
                              "engineering. I believe I have much to "
                              "offer to employers.",
              'profileimage' : 'awhite'},
+             
             {'username' : 'mei3849@gmailfr.fr',
              'password' : '3494nabdf89',
              'firstname' : 'Mei',
@@ -85,6 +86,7 @@ def populate():
                              "as I believe I have the relevant skills and  "
                              "experience.",
              'profileimage' : 'mei3849'},
+             
             {'username' : 'mathewmcb@outlookmail.com',
              'password' : 'charlixcxfan99',
              'firstname' : 'Mathew',
@@ -95,6 +97,7 @@ def populate():
              'searchinginfo': "I'm looking to expand my horizons and look "
                              "for new opportunities.",
              'profileimage' : 'mathewmcb'},
+             
             {'username' : 'henryhoover5@outlookmail.com',
              'password' : 'numatic8347',
              'firstname' : 'Henry',
@@ -106,7 +109,119 @@ def populate():
              'searchinginfo': "I am looking for a job as a full time cleaner "
                              "or cleaning manager. ",
              'profileimage' : 'henryhoover5'},
-            ]
+             
+            {'username' : 'faisalmein23@geemail.com',
+             'password' : '33junk923',
+             'firstname' : 'Faisal',
+             'lastname' : 'Mein',
+             'category' : 'Web Development',
+             'website' : 'www.fmwebdev.co.uk',
+             'about' : "Web developer with 10 years industry experience.",
+             'searchinginfo': "I'm looking to expand my horizons and find new "
+                             "projects I can be passionate about.",
+             'profileimage' : 'faisalmein23'},
+              
+            {'username' : 'lj@ljunggrent.nl',
+             'password' : 'july231970',
+             'firstname' : 'Trijntje',
+             'lastname' : 'Ljunggren',
+             'category' : 'Data Science',
+             'website' : 'www.ljunggrent.nl',
+             'about' : "Data Scientist from Rotterdam. Passionate about data.",
+             'searchinginfo': "Looking for new opportunities. Willing to "
+                             "relocate.",
+             'profileimage' : 'lj'}, 
+              
+            {'username' : 'bevspence1970@geemail.com',
+             'password' : 'doublep0ints98',
+             'firstname' : 'Bev',
+             'lastname' : 'Spence',
+             'category' : 'Business Management',
+             'website' : 'www.bspence.co.uk/about',
+             'about' : "Recent graduate from the University of St Andrews in "
+                         "business.",
+             'searchinginfo': "Looking for opportunities as a business "
+                             "adviser.",
+             'profileimage' : 'bevspence197'},
+             
+            {'username' : 'fareeha55@outlookmail.com',
+             'password' : 'fjsiu894y8fdsf',
+             'firstname' : 'Fareeha',
+             'lastname' : 'Gulbahar',
+             'category' : 'Management',
+             'website' : 'www.fareehagulbahar.com',
+             'about' : "Advertising manager based in London. 5 years.",
+             'searchinginfo': "Opportunities in London wanted. See portfolio. "
+                             "Contact for more information.",
+             'profileimage' : 'fareeha55'},
+               
+            {'username' : 'fowlercasey1999@wahoo.co.uk',
+             'password' : 'sudh094nv',
+             'firstname' : 'Casey',
+             'lastname' : 'Fowler',
+             'category' : 'Internships',
+             'website' : 'www.caseyfowler.ie',
+             'about' : "Recent graduate from Dublin University.",
+             'searchinginfo': "Looking for an internship in a company based "
+                             "in Ireland.",
+             'profileimage' : 'fowlercasey1999'},
+             
+            {'username' : 'loricoleman7667@geemail.com',
+             'password' : 'lcomm77bd8b',
+             'firstname' : 'Lorraine',
+             'lastname' : 'Coleman',
+             'category' : 'Nursing',
+             'website' : 'www.facebook.com/lorrainecoleman',
+             'about' : "Experienced nurse for over 20 years specialising in "
+                         "home care.",
+             'searchinginfo': "Willing to take up a variety of nursing "
+                             "positions, enquire for info.",
+             'profileimage' : 'loricoleman7667'},
+             
+            {'username' : 'younggipark@ygp.kr',
+             'password' : 'ygkygk3434',
+             'firstname' : 'Young Gi',
+             'lastname' : 'Park',
+             'category' : 'Engineering',
+             'website' : 'www.ygp.kr',
+             'about' : "Civil Engineer from Seoul, Korea.",
+             'searchinginfo': "Looking for opportunities to travel and use " 
+                             "my skills around the world.",
+             'profileimage' : 'younggipark'},
+    
+            {'username' : 'charlesrhodes@crr.co.uk',
+             'password' : '5i90asbc098',
+             'firstname' : 'Charles',
+             'lastname' : 'Rhodes',
+             'category' : 'Retail',
+             'website' : 'www.crrrasffretail.co.uk',
+             'about' : "Working in fasion retail for 6 years. ",
+             'searchinginfo': "Looking for jobs in retail management. Very "
+                             "experienced.",
+             'profileimage' : 'charlesrhodes'},
+             
+            {'username' : 'contactjk@kimathieducation.com',
+             'password' : 'ilovemaths99',
+             'firstname' : 'Jordan',
+             'lastname' : 'Kimathi',
+             'category' : 'Education',
+             'website' : 'www.kimathieducation.com',
+             'about' : "Math tutor in Boston.",
+             'searchinginfo': "Teaching jobs in Boston wanted. Math and "
+                             "Physics.",
+             'profileimage' : 'contactjk'},
+              
+            {'username' : 'jordansimpson@consultings.com',
+             'password' : '4889er9gn98sdfng',
+             'firstname' : 'Jordan',
+             'lastname' : 'Simpson',
+             'category' : 'Consulting',
+             'website' : 'www.consultings.com/about/jordan',
+             'about' : "I'm a consultant in Newcastle.",
+             'searchinginfo': "Offering expert business advice. Looking for "
+                             "a job in a consulting firm.",
+             'profileimage' : 'jordansimpson'},
+             ]
     
     jobpostings = [
             {'id' : '00001',
@@ -182,7 +297,8 @@ def create_jobseeker(data, u):
     
 def create_jobposting(data):
     cat = Category.objects.get(name=data['category'])
-    employer = User.objects.get(username=data['poster'])
+    temp = User.objects.get(username=data['poster'])
+    employer = UserProfile.objects.get(user=temp)
     posting = JobListing.objects.get_or_create(job_id=data['id'],
                                                employer=employer,
                                                category=cat,
