@@ -10,6 +10,12 @@
 {% endblock %}
 
 {% block body_block %}
+    <script>
+        const COMPANY_MAX_LENGTH = {{ COMPANY_MAX_LENGTH }};
+        const WEBSITE_MAX_LENGTH = {{ WEBSITE_MAX_LENGTH }};
+        const ABOUT_MAX_LENGTH = {{ ABOUT_MAX_LENGTH }};
+        const SEARCHING_MAX_LENGTH = {{ SEARCHING_MAX_LENGTH }};
+    </script>
     <script src="{% static "js/signup.js" %}"></script>
     <!--general forms taken from https://getbootstrap.com/docs/4.0/components/forms/-->
     <form id="user_form" method="post" action="{% url 'LinkedOn:signup' %}" enctype="multipart/form-data">
@@ -30,9 +36,10 @@
                     <input type="radio" value="on" class="btn-check" name="isEmployer" id="employer" autocomplete="off">
                     <label class="btn btn-outline-primary" for="employer">Employer</label>
                 </div>
+                </br>
                 <textarea name="first_name" class="form-control" placeholder="First Name" rows="1"></textarea>
                 <textarea name="last_name" class="form-control" placeholder="Last Name" rows="1"></textarea>
-                <textarea id ="formCompany" name="company" class="form-control" placeholder="Company" rows="1"></textarea>
+                <textarea id="formCompany" name="company" class="form-control" placeholder="Company" rows="1"></textarea>
                 <input name="username" type="email" class="form-control" placeholder="name@example.com">
                 <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
                 <textarea name="website" class="form-control" placeholder="Portfolio/ Website" rows="1"></textarea>

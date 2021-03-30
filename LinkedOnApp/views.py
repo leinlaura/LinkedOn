@@ -58,7 +58,12 @@ def signup(request):
             else:
                 return redirect(reverse('LinkedOn:signin'))
 
-    context_dic = {"categories": Category.objects.all()}
+    context_dic = {"categories": Category.objects.all(),
+                   "COMPANY_MAX_LENGTH": UserProfile.COMPANY_MAX_LENGTH,
+                   "WEBSITE_MAX_LENGTH": UserProfile.WEBSITE_MAX_LENGTH,
+                   "ABOUT_MAX_LENGTH": UserProfile.ABOUT_MAX_LENGTH,
+                   "SEARCHING_MAX_LENGTH": UserProfile.SEARCHING_MAX_LENGTH,
+                   }
     return render(request, 'LinkedOn/signup.html', context_dic)
 
 
