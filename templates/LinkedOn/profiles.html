@@ -11,12 +11,15 @@ Browse Profiles
 
 {% block body_block %}
 <h1> Profiles </h1>
+
 <div class="row">
 {% for p in profiles %}
 		<div class="col-md-4">
+		<a href="{% url 'LinkedOn:show_profile' p.id %}">
         <h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
 		<img src="{{ p.profileImage.url }}" alt="profile picture" />
 		<h5> {{ p.about }} </h5>
+		</a>
 		</div>
 {% endfor %}
 </div>

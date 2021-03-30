@@ -1,0 +1,27 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/show_profile.css" %}">
+{% endblock %}
+
+{% block title_block %}
+View Profile
+{% endblock %}
+
+
+{% block body_block %}
+<div class="row">
+<div class="col-md-5">
+<h1>{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
+<img src="{{ profile.profileImage.url }}" alt="profile picture"></img>
+</div>
+
+<div class="col-md-7">
+<h2> {{ profile.about }} </h2>
+<h5> {{ profile.searchingInfo }} </h5>
+<a type="button" class="btn btn-dark">Visit my website: {{ profile.website }}</a>
+<a type="button" class="btn btn-primary" href="mailto:{{ profile.user.username }}">{{ profile.user.username }}</a>
+</div>
+</div>
+{% endblock %}

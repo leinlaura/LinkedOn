@@ -111,7 +111,18 @@ def profiles(request):
     context_dic = {}
     context_dic["profiles"] = profiles
     return render(request, 'LinkedOn/profiles.html', context_dic)
-
+    
+    
+@login_required
+def show_profile(request, profile_id):
+    context_dic= {}
+    try:
+        profile = UserProfile.objects.get(id=profile_id)
+        context_dic["profile"] = profile
+    except UserProfile.DoesNotExist:
+        cotnext_dic["profile"] = None
+    
+    return render(request, 'LinkedOn/show_profile.html', context_dic)
 
 def attempt_login(request, username, password):
     user_auth = authenticate(username=username, password=password)
