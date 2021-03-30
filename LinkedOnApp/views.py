@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.core.exceptions import ObjectDoesNotExist
 import math
 
 
@@ -31,14 +32,22 @@ def signup(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST)
+
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
+            user = user_form.save(commit=False)
             plain_text_password = user.password
             user.set_password(user.password)
             user.save()
 
             profile = profile_form.save(commit=False)
             profile.user = user
+            profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == ['on']
+
+            try:
+                category = Category.objects.get(name=request.POST.get('category'))
+                profile.category = category
+            except ObjectDoesNotExist:
+                pass
 
             if 'profileImage' in request.FILES:
                 profile.profileImage = request.FILES['profileImage']
@@ -82,18 +91,18 @@ def categories(request):
 @login_required
 def show_category(request, category_name_slug):
     context_dic = {}
-    
+
     try:
         category = Category.objects.get(slug=category_name_slug)
-        context_dic['category']= category
-        #get profiles where the category matches and they are not employers
-        profiles = UserProfile.objects.filter(category =category, isEmployer = False)
+        context_dic['category'] = category
+        # get profiles where the category matches and they are not employers
+        profiles = UserProfile.objects.filter(category=category, isEmployer=False)
         context_dic["profiles"] = profiles
-            
+
     except Category.DoesNotExist:
-        context_dic['category']=None
-        context_dic["profiles"]=None
-        
+        context_dic['category'] = None
+        context_dic["profiles"] = None
+
     return render(request, 'LinkedOn/show_category.html', context_dic)
 
 
@@ -107,22 +116,23 @@ def joblistings(request):
 
 @login_required
 def profiles(request):
-    profiles = UserProfile.objects.filter(isEmployer = False) #filter profiles to jobseekers
+    profiles = UserProfile.objects.filter(isEmployer=False)  # filter profiles to jobseekers
     context_dic = {}
     context_dic["profiles"] = profiles
     return render(request, 'LinkedOn/profiles.html', context_dic)
-    
-    
+
+
 @login_required
 def show_profile(request, profile_id):
-    context_dic= {}
+    context_dic = {}
     try:
         profile = UserProfile.objects.get(id=profile_id)
         context_dic["profile"] = profile
     except UserProfile.DoesNotExist:
-        cotnext_dic["profile"] = None
-    
+        context_dic["profile"] = None
+
     return render(request, 'LinkedOn/show_profile.html', context_dic)
+
 
 def attempt_login(request, username, password):
     user_auth = authenticate(username=username, password=password)

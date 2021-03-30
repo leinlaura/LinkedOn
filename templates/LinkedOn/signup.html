@@ -44,7 +44,7 @@
                 <textarea name="about" class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5"></textarea>
                 <textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10"></textarea>
                 <div class="form-group">
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select name="category" class="form-control" id="exampleFormControlSelect1">
                         <option> Select Category</option>
                         {% for c in categories %}
                             <option>{{ c.name }}</option>
