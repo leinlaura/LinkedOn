@@ -29,7 +29,7 @@ $(function () {
                 required: {
                     depends: function(element) {
                         return $("#employer").is(":checked");
-                    }
+                    },
                 },
                 maxlength: COMPANY_MAX_LENGTH,
             },
@@ -53,7 +53,7 @@ $(function () {
                 required: {
                     depends: function(element) {
                         return $("#jobseeker").is(":checked");
-                    }
+                    },
                 },
                 maxlength: ABOUT_MAX_LENGTH,
             },
@@ -61,9 +61,16 @@ $(function () {
                 required: {
                     depends: function(element) {
                         return $("#jobseeker").is(":checked");
-                    }
+                    },
                 },
                 maxlength: SEARCHING_MAX_LENGTH,
+            },
+            category: {
+                required: {
+                    depends: function(element) {
+                        return $("#jobseeker").is(":checked");
+                    },
+                },
             },
         },
         errorPlacement: function(error, element) {
