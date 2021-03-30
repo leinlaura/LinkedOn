@@ -136,8 +136,10 @@ def show_joblisting(request, job_id):
         context_dic["job"] = None
     
     return render(request, 'LinkedOn/show_joblisting.html', context_dic)
-    
-    
+
+@login_required
+def create_joblisting(request):
+    context_dic={}
 
 def attempt_login(request, username, password):
     user_auth = authenticate(username=username, password=password)
