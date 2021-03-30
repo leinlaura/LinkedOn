@@ -119,10 +119,25 @@ def show_profile(request, profile_id):
     try:
         profile = UserProfile.objects.get(id=profile_id)
         context_dic["profile"] = profile
+        
     except UserProfile.DoesNotExist:
-        cotnext_dic["profile"] = None
+        context_dic["profile"] = None
     
     return render(request, 'LinkedOn/show_profile.html', context_dic)
+    
+@login_required
+def show_joblisting(request, job_id):
+    context_dic={}
+    try:
+        job = JobListing.objects.get(id=job_id)
+        context_dic["job"] = job
+        
+    except JobListing.DoesNotExist:
+        context_dic["job"] = None
+    
+    return render(request, 'LinkedOn/show_joblisting.html', context_dic)
+    
+    
 
 def attempt_login(request, username, password):
     user_auth = authenticate(username=username, password=password)

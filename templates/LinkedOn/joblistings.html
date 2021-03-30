@@ -16,8 +16,10 @@ Browse Joblistings
 {% for j in joblistings %}
 		<div class="col-md-4">
         <h2> {{ j.employer.company }} </h2> 
-		<p> {{ j.description }} </p>
+		<p> {{ j.description }} 
+		<a href="{% url 'LinkedOn:show_joblisting' j.id %}"> Discover </a> </p>
 		</div>
+		
 {% endfor %}
 </div>
 

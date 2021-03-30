@@ -1,0 +1,17 @@
+.container {
+  margin: auto;
+  width: 50%;
+  padding: 40px;
+  position: sticky;
+  text-align: center;
+  color: #ffffff !Important;
+}
+
+h5{
+	color: #0275d8 !Important;
+	padding-bottom: 20px;
+}
+
+h4{
+	padding-bottom: 20px;
+}

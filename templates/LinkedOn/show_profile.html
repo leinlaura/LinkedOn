@@ -20,7 +20,7 @@ View Profile
 <div class="col-md-7">
 <h2> {{ profile.about }} </h2>
 <h5> {{ profile.searchingInfo }} </h5>
-<a type="button" class="btn btn-dark">Visit my website: {{ profile.website }}</a>
+<a type="button" class="btn btn-dark">{{ profile.website }}</a>
 <a type="button" class="btn btn-primary" href="mailto:{{ profile.user.username }}">{{ profile.user.username }}</a>
 </div>
 </div>
