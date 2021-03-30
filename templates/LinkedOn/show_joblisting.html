@@ -1,0 +1,22 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/show_joblisting.css" %}">
+{% endblock %}
+
+{% block title_block %}
+View JobListing
+{% endblock %}
+
+
+{% block body_block %}
+<div class="container">
+<h5> This joblisting is in: {{ job.category }}</h5>
+<h1>{{ job.employer.company }} </h1>
+<h5> {{ job.employer.user.first_name }} {{ job.employer.user.last_name }} </h5> 
+<h4> {{ job.description }} </h4>
+<a type="button" class="btn btn-dark">{{ job.employer.website }}</a>
+<a type="button" class="btn btn-primary" href="mailto:{{ job.employer.user.username }}">{{ job.employer.user.username }}</a>
+</div>
+{% endblock %}
