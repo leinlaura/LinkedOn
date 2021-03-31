@@ -131,5 +131,5 @@ dmypy.json
 
 # Database stuff
 media/profile_images/*
-!media_profile_images/.gitkeep
+!media/profile_images/.gitkeep
 
