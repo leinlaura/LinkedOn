@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.core.exceptions import ObjectDoesNotExist
 import math
 
 
@@ -39,6 +40,13 @@ def signup(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
+            profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == ['on']
+
+            try:
+                category = Category.objects.get(name=request.POST.get('category'))
+                profile.category = category
+            except ObjectDoesNotExist:
+                pass
 
             if 'profileImage' in request.FILES:
                 profile.profileImage = request.FILES['profileImage']
