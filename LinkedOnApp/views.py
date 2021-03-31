@@ -32,6 +32,7 @@ def signup(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST)
+
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             plain_text_password = user.password
@@ -40,7 +41,7 @@ def signup(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
-            profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == ['on']
+            profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == 'on'
 
             try:
                 category = Category.objects.get(name=request.POST.get('category'))
@@ -63,6 +64,7 @@ def signup(request):
                    "ABOUT_MAX_LENGTH": UserProfile.ABOUT_MAX_LENGTH,
                    "SEARCHING_MAX_LENGTH": UserProfile.SEARCHING_MAX_LENGTH,
                    }
+
     return render(request, 'LinkedOn/signup.html', context_dic)
 
 
