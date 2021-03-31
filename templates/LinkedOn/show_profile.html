@@ -2,26 +2,30 @@
 {% load staticfiles %}
 
 {% block head_block %}
-<link rel="stylesheet" href="{% static "css/show_profile.css" %}">
+    <link rel="stylesheet" href="{% static "css/show_profile.css" %}">
 {% endblock %}
 
 {% block title_block %}
-View Profile
+    View Profile
 {% endblock %}
 
 
 {% block body_block %}
-<div class="row">
-<div class="col-md-5">
-<h1>{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
-<img src="{{ profile.profileImage.url }}" alt="profile picture"></img>
-</div>
+    <div class="row">
+        <div class="col-md-5">
+            <h1>{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
+            {% if p.profileImage %}
+                <img src="{{ p.profileImage.url }}" altsrc="{% static 'images/template_profile.png' %}" alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
+            {% else %}
+                <img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
+            {% endif %}
+        </div>
 
-<div class="col-md-7">
-<h2> {{ profile.about }} </h2>
-<h5> {{ profile.searchingInfo }} </h5>
-<a type="button" class="btn btn-dark">{{ profile.website }}</a>
-<a type="button" class="btn btn-primary" href="mailto:{{ profile.user.username }}">{{ profile.user.username }}</a>
-</div>
-</div>
+        <div class="col-md-7">
+            <h2> {{ profile.about }} </h2>
+            <h5> {{ profile.searchingInfo }} </h5>
+            <a type="button" class="btn btn-dark">{{ profile.website }}</a>
+            <a type="button" class="btn btn-primary" href="mailto:{{ profile.user.username }}">{{ profile.user.username }}</a>
+        </div>
+    </div>
 {% endblock %}
