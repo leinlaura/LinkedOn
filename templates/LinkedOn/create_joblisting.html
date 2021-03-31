@@ -10,9 +10,10 @@ Create Joblisting
 {% endblock %}
 
 {% block body_block %}
-<div class="row">
-<form id="joblisting_form" method="post" action="{% url 'LinkedOn:joblistings' %}" enctype="multipart/form-data">
+
+<form id="joblisting_form" method="post" enctype="multipart/form-data">
 {% csrf_token %}
+<div class="row">
 <div class="col-md-5" id="left">
 <h1> Are you looking for new employees? </h1>
 <h2> We can help! </h2>
@@ -20,7 +21,7 @@ Create Joblisting
 </div>
 
 <div class="col-md-4" id="right">
-	<textarea name="description" class="form-control" placeholder="Describe who you are looking for!" rows="5"></textarea>
+	<textarea name="description" class="form-control" placeholder="Describe who you are looking for!" rows="5" required></textarea>
 	<div class="form-group">
         <select name="category" class="form-control" id="exampleFormControlSelect1">
             <option> Select Category</option>

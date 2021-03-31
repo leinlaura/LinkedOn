@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 import math
-
+import uuid
 
 def index(request):
     return render(request, 'LinkedOn/index.html')
@@ -160,13 +160,14 @@ def show_joblisting(request, job_id):
 
 @login_required
 def create_joblisting(request):
+    currentUser = UserProfile.objects.get(user=request.user)
     if request.method == 'POST':
-            joblisting_form = JobListing(request.POST)
-            if joblisting_form.is_valid():
-                joblisting = joblisting_form.save()
-                joblisting.save()
+            description = request.POST['description']
+            category = Category.objects.get(name=request.POST.get('category'))
+            employer = currentUser
+            joblisting = JobListing(job_id=uuid.uuid4(),description=description, category=category, employer=employer)
+            joblisting.save()
 
-    #currentUser = UserProfile.objects.get(user = request.user)
     return render(request, 'LinkedOn/create_joblisting.html', {"categories": Category.objects.all()})
     
 

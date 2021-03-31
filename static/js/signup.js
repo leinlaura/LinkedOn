@@ -47,7 +47,7 @@ $(function () {
                 maxlength: 30,
             },
             website: {
-                required: true,
+                required: false,
                 maxlength: WEBSITE_MAX_LENGTH,
                 validUrl: true,
             },
