@@ -129,3 +129,7 @@ dmypy.json
 .pyre/
 .idea/
 
+# Database stuff
+media/profile_images/*
+!media_profile_images/.gitkeep
+
