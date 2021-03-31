@@ -12,6 +12,9 @@ Browse Joblistings
 {% block body_block %}
 
 <h1> Job Listings </h1>
+{% if currentUser.isEmployer %}
+<h5> Have any jobs to advertise? <a href="{% url 'LinkedOn:create_joblisting' %}"> Click here. </a> </h5>
+{% endif %}
 <div class="row">
 {% for j in joblistings %}
 		<div class="col-md-4">

@@ -105,8 +105,15 @@ def show_category(request, category_name_slug):
 @login_required
 def joblistings(request):
     context_dic = {}
-    joblistings = JobListing.objects.all()
-    context_dic["joblistings"] = joblistings
+    try:
+        joblistings = JobListing.objects.all()
+        context_dic["joblistings"] = joblistings
+        currentUser = UserProfile.objects.get(user=request.user)
+        context_dic["currentUser"] = currentUser #get current user to check if they are an employer
+        
+    except UserProfile.DoesNotExist:
+        context_dic["currentUser"] = None
+        
     return render(request, 'LinkedOn/joblistings.html', context_dic)
 
 
@@ -142,6 +149,17 @@ def show_joblisting(request, job_id):
         context_dic["job"] = None
     
     return render(request, 'LinkedOn/show_joblisting.html', context_dic)
+
+@login_required
+def create_joblisting(request):
+    if request.method == 'POST':
+            joblisting_form = JobListing(request.POST)
+            if joblisting_form.is_valid():
+                joblisting = joblisting_form.save()
+                joblisting.save()
+
+    #currentUser = UserProfile.objects.get(user = request.user)
+    return render(request, 'LinkedOn/create_joblisting.html', {"categories": Category.objects.all()})
     
 
 def attempt_login(request, username, password):

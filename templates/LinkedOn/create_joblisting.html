@@ -1,0 +1,36 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/signup.css" %}">
+{% endblock %}
+
+{% block title_block %}
+Create Joblisting
+{% endblock %}
+
+{% block body_block %}
+<div class="row">
+<form id="joblisting_form" method="post" action="{% url 'LinkedOn:joblistings' %}" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="col-md-5" id="left">
+<h1> Are you looking for new employees? </h1>
+<h2> We can help! </h2>
+<h4> Give a description of the job you have to offer and we will advertise it! It will automatically be linked to your employer account.</h4>
+</div>
+
+<div class="col-md-4" id="right">
+	<textarea name="description" class="form-control" placeholder="Describe who you are looking for!" rows="5"></textarea>
+	<div class="form-group">
+        <select name="category" class="form-control" id="exampleFormControlSelect1">
+            <option> Select Category</option>
+                {% for c in categories %}
+                    <option>{{ c.name }}</option>
+                {% endfor %}
+        </select>
+	</div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
+</div>
+</div>
+</form>
+{% endblock %}
