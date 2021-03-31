@@ -14,8 +14,8 @@
     <div class="row">
         <div class="col-md-5">
             <h1>{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
-            {% if p.profileImage %}
-                <img src="{{ p.profileImage.url }}" altsrc="{% static 'images/template_profile.png' %}" alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
+            {% if profile.profileImage %}
+                <img src="{{ profile.profileImage.url }}"  alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
             {% else %}
                 <img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
             {% endif %}
