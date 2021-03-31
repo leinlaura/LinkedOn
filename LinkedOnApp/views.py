@@ -194,8 +194,6 @@ def edit_profile(request):
             else:
                 currentUser.about = request.POST['about']
                 currentUser.searchingInfo = request.POST['searchingInfo']
-            
-        #    profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == ['on']
 
             try:
                 category = Category.objects.get(name=request.POST.get('category'))
@@ -206,6 +204,8 @@ def edit_profile(request):
             if 'profileImage' in request.FILES:
                 currentUser.profileImage = request.FILES['profileImage']
             currentUser.save()
+            
+            return redirect('/')
 
     context_dic = {"categories": Category.objects.all(),
                    "COMPANY_MAX_LENGTH": UserProfile.COMPANY_MAX_LENGTH,
