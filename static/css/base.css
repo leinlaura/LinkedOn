@@ -16,6 +16,12 @@
 	font-size:20px;
 }
 
+#editprofile{
+	position: relative;
+	left: 250px;
+	font-size:20px;
+}
+
 #LinkedOn{
 	color: #0275d8;
 }

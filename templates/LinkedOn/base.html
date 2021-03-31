@@ -55,7 +55,7 @@
             <!-- sign in and sign out buttons-->
             {% if user.is_authenticated %}
                 <a type="button" id="logout" href="{% url 'LinkedOn:logout' %}" class="btn btn-primary">Log Out</a>
-	
+				<a type="button" id="editprofile" href="{% url 'LinkedOn:edit_profile' %}" class="btn btn-light">Edit Profile</a>
             {% else %}
                 <a type="button" id="signin" href="{% url 'LinkedOn:signin' %}" class="btn btn-light">Sign In</a>
                 <a type="button" id="signup" href="{% url 'LinkedOn:signup' %}" class="btn btn-primary">Sign Up</a>

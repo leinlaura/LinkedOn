@@ -1,6 +1,6 @@
 from LinkedOnApp.models import Category, UserProfile, JobListing
 from django.shortcuts import render
-from LinkedOnApp.forms import UserForm, UserProfileForm
+from LinkedOnApp.forms import UserForm, UserProfileForm, UserUpdateForm, UserProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
@@ -177,3 +177,41 @@ def attempt_login(request, username, password):
         return True
 
     return False
+
+@login_required
+def edit_profile(request):
+    currentUser = UserProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        profile_form = UserProfileUpdateForm(request.POST)
+        if profile_form.is_valid():
+            currentUser.user.first_name = request.POST['first_name']
+            currentUser.user.last_name = request.POST['last_name']
+            currentUser.user.save()
+            
+            currentUser.website = request.POST['website']
+            if currentUser.isEmployer == True:
+                currentUser.company = request.POST['company']
+            else:
+                currentUser.about = request.POST['about']
+                currentUser.searchingInfo = request.POST['searchingInfo']
+            
+        #    profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == ['on']
+
+            try:
+                category = Category.objects.get(name=request.POST.get('category'))
+                currentUser.category = category
+            except ObjectDoesNotExist:
+                pass
+
+            if 'profileImage' in request.FILES:
+                currentUser.profileImage = request.FILES['profileImage']
+            currentUser.save()
+
+    context_dic = {"categories": Category.objects.all(),
+                   "COMPANY_MAX_LENGTH": UserProfile.COMPANY_MAX_LENGTH,
+                   "WEBSITE_MAX_LENGTH": UserProfile.WEBSITE_MAX_LENGTH,
+                   "ABOUT_MAX_LENGTH": UserProfile.ABOUT_MAX_LENGTH,
+                   "SEARCHING_MAX_LENGTH": UserProfile.SEARCHING_MAX_LENGTH,
+                   "currentUser": currentUser,
+                   }
+    return render(request, 'LinkedOn/edit_profile.html', context_dic)
