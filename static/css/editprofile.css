@@ -1,0 +1,27 @@
+textarea, input, .form-control, .btn-group {
+    margin-bottom: 25px;
+}
+
+#left {
+    padding: 50px;
+}
+
+#right {
+    padding: 50px;
+}
+
+#middle {
+    padding: 50px;
+}
+
+#submit {
+    float: left;
+}
+
+#left {
+    color: #ffffff !Important;
+}
+
+#left h2 {
+    color: #0275d8 !Important;
+}
