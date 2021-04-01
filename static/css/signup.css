@@ -25,3 +25,7 @@ textarea, input, .form-control, .btn-group {
 #left h2 {
     color: #0275d8 !Important;
 }
+
+.error {
+    color: #d61e17;
+}
