@@ -201,30 +201,30 @@ def attempt_login(request, username, password):
 
 @login_required
 def edit_profile(request):
-    currentUser = UserProfile.objects.get(user=request.user)
+    current_profile = UserProfile.objects.get(user=request.user)
     if request.method == 'POST':
         profile_form = UserProfileUpdateForm(request.POST)
         if profile_form.is_valid():
-            currentUser.user.first_name = request.POST['first_name']
-            currentUser.user.last_name = request.POST['last_name']
-            currentUser.user.save()
+            current_profile.user.first_name = request.POST['first_name']
+            current_profile.user.last_name = request.POST['last_name']
+            current_profile.user.save()
 
-            currentUser.website = request.POST['website']
-            if currentUser.isEmployer == True:
-                currentUser.company = request.POST['company']
+            current_profile.website = request.POST['website']
+            if current_profile.isEmployer:
+                current_profile.company = request.POST['company']
             else:
-                currentUser.about = request.POST['about']
-                currentUser.searchingInfo = request.POST['searchingInfo']
+                current_profile.about = request.POST['about']
+                current_profile.searchingInfo = request.POST['searchingInfo']
 
             try:
                 category = Category.objects.get(name=request.POST.get('category'))
-                currentUser.category = category
+                current_profile.category = category
             except ObjectDoesNotExist:
                 pass
 
             if 'profileImage' in request.FILES:
-                currentUser.profileImage = request.FILES['profileImage']
-            currentUser.save()
+                current_profile.profileImage = request.FILES['profileImage']
+            current_profile.save()
 
             return redirect('/')
 
@@ -233,7 +233,8 @@ def edit_profile(request):
                    "WEBSITE_MAX_LENGTH": UserProfile.WEBSITE_MAX_LENGTH,
                    "ABOUT_MAX_LENGTH": UserProfile.ABOUT_MAX_LENGTH,
                    "SEARCHING_MAX_LENGTH": UserProfile.SEARCHING_MAX_LENGTH,
-                   "currentUser": currentUser,
+                   "current_user": request.user,
+                   "current_profile": current_profile,
                    }
     return render(request, 'LinkedOn/edit_profile.html', context_dic)
 

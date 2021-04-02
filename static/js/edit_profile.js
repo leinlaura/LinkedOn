@@ -6,30 +6,68 @@ $(function() {
     $("#user_form").validate({
         rules: {
             first_name: {
+                required: true,
                 maxlength: 150,
             },
             last_name: {
+                required: true,
                 maxlength: 150,
             },
             company: {
+                required: {
+                    depends: function (element) {
+                        return IS_EMPLOYER;
+                    },
+                },
                 maxlength: COMPANY_MAX_LENGTH,
             },
-            password: {
-                maxlength: 30,
+            username: {
+                required: true,
+                email: true,
+                maxlength: 150,
+                remote:  {
+                    url: USERNAME_CHECK_URL,
+                    type: 'GET',
+                    dataFilter: function(response) {
+                        return JSON.parse(response).unique;
+                    },
+                },
             },
             website: {
+                required: false,
                 maxlength: WEBSITE_MAX_LENGTH,
                 validUrl: true,
             },
+            profileImage: {
+                required: false,
+            },
             about: {
+                required: {
+                    depends: function (element) {
+                        return !IS_EMPLOYER;
+                    },
+                },
                 maxlength: ABOUT_MAX_LENGTH,
             },
             searchingInfo: {
+                required: {
+                    depends: function (element) {
+                        return !IS_EMPLOYER;
+                    },
+                },
                 maxlength: SEARCHING_MAX_LENGTH,
+            },
+            category: {
+                required: {
+                    depends: function (element) {
+                        return !IS_EMPLOYER;
+                    },
+                },
             },
         },
         messages: {
             website: {
+                required: "This field is required.",
                 validUrl: "Please enter a valid URL.",
             },
             username: {

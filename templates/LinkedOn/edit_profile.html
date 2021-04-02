@@ -15,6 +15,7 @@
         const WEBSITE_MAX_LENGTH = {{ WEBSITE_MAX_LENGTH }};
         const ABOUT_MAX_LENGTH = {{ ABOUT_MAX_LENGTH }};
         const SEARCHING_MAX_LENGTH = {{ SEARCHING_MAX_LENGTH }};
+        const IS_EMPLOYER = "{{ current_profile.isEmployer }}" === "True"
     </script>
     <script src="{% static "js/edit_profile.js" %}"></script>
     <!--general forms taken from https://getbootstrap.com/docs/4.0/components/forms/-->
@@ -28,11 +29,11 @@
 
             <!--middle column-->
             <div class="col-md-4" id="middle">
-                <textarea name="first_name" class="form-control" placeholder="First Name" rows="1"></textarea>
-                <textarea name="last_name" class="form-control" placeholder="Last Name" rows="1"></textarea>
-                <textarea name="website" class="form-control" placeholder="Portfolio/ Website" rows="1"></textarea>
-                {% if currentUser.isEmployer %}
-                    <textarea id="formCompany" name="company" class="form-control" placeholder="Company" rows="1"></textarea>
+                <textarea name="first_name" class="form-control" placeholder="First Name" rows="1">{{ current_user.first_name }}</textarea>
+                <textarea name="last_name" class="form-control" placeholder="Last Name" rows="1">{{ current_user.last_name }}</textarea>
+                <textarea name="website" class="form-control" placeholder="Portfolio/ Website" rows="1">{{ current_profile.website }}</textarea>
+                {% if current_profile.isEmployer %}
+                    <textarea id="formCompany" name="company" class="form-control" placeholder="Company" rows="1">{{ current_profile.company }}</textarea>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Update Profile</button>
                 {% else %}
                     <input name="profileImage" class="form-control form-control-sm" id="formFileSm" type="file" accept="image/*">
@@ -41,14 +42,18 @@
 
             <!--right column-->
             <div class="col-md-4" id="right">
-                {% if not currentUser.isEmployer %}
-                    <textarea name="about" class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5"></textarea>
-                    <textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10"></textarea>
+                {% if not current_profile.isEmployer %}
+                    <textarea name="about" class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5">{{ current_profile.about }}</textarea>
+                    <textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10">{{ current_profile.searchingInfo }}</textarea>
                     <div class="form-group">
                     <select name="category" class="form-control" id="exampleFormControlSelect1">
                         <option> Select Category</option>
                         {% for c in categories %}
-                            <option>{{ c.name }}</option>
+                            {% if c.name == current_profile.category.name %}
+                                <option selected="selected">{{ c.name }}</option>
+                            {% else %}
+                                <option>{{ c.name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Update Profile</button>
