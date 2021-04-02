@@ -1,0 +1,29 @@
+body{
+	color: #ffffff !Important;
+}
+
+
+h1 {
+	padding-left: 40px;
+	padding-top: 20px;
+	padding-bottom:10px;
+	
+}
+
+img {
+	width: 80%;
+	position: sticky;
+	padding-left: 30px;
+}
+
+#changepassword{
+	position:relative;
+	left: 20px;
+	font-size:20px;
+}
+
+#delacc{
+	position:relative;
+	left: 20px;
+	font-size:20px;
+}

@@ -1,0 +1,20 @@
+{% extends 'LinkedOn/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+    <link rel="stylesheet" href="{% static "css/settings.css" %}">
+{% endblock %}
+
+{% block title_block %}
+    Account deactivated
+{% endblock %}
+
+
+{% block body_block %}
+    <div class="row">
+	<div class="col-md-7">
+			<h1>Account deactivated.</h1>
+            <h3>We're sorry to see you go. Thank you for using LinkedOn.</h3>
+        </div>
+    </div>
+{% endblock %}

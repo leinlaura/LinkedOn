@@ -28,4 +28,3 @@ class UserProfileUpdateForm(forms.ModelForm):
         model = UserProfile
         fields = ('website', 'company', 'profileImage', 'about', 'searchingInfo',)
         
-
