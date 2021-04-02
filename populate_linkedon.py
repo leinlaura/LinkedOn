@@ -195,7 +195,7 @@ def populate():
              'lastname' : 'Rhodes',
              'category' : 'Retail',
              'website' : 'www.crrrasffretail.co.uk',
-             'about' : "Working in fasion retail for 6 years. ",
+             'about' : "Working in fashion retail for 6 years. ",
              'searchinginfo': "Looking for jobs in retail management. Very "
                              "experienced.",
              'profileimage' : 'charlesrhodes'},

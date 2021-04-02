@@ -1,10 +1,11 @@
 from LinkedOnApp.models import Category, UserProfile, JobListing, User
-from django.shortcuts import render
 from LinkedOnApp.forms import UserForm, UserProfileForm, UserUpdateForm, UserProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse
-from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
+from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 import math
@@ -139,7 +140,7 @@ def joblistings(request):
 
 @login_required
 def profiles(request):
-    profiles = UserProfile.objects.filter(isEmployer=False)  # filter profiles to jobseekers
+    profiles = UserProfile.objects.filter(isEmployer=False)  # filter profiles to jobseekers and active users
     context_dic = {}
     context_dic["profiles"] = profiles
     return render(request, 'LinkedOn/profiles.html', context_dic)
@@ -178,7 +179,8 @@ def create_joblisting(request):
         description = request.POST['description']
         category = Category.objects.get(name=request.POST.get('category'))
         employer = currentUser
-        joblisting = JobListing(job_id=uuid.uuid4(), description=description, category=category, employer=employer)
+        joblisting = JobListing(job_id=uuid.uuid4(), description=description, 
+                                category=category, employer=employer)
         joblisting.save()
 
     return render(request, 'LinkedOn/create_joblisting.html', {"categories": Category.objects.all()})
@@ -234,3 +236,20 @@ def edit_profile(request):
                    "currentUser": currentUser,
                    }
     return render(request, 'LinkedOn/edit_profile.html', context_dic)
+
+@login_required
+def settings(request):
+    return render(request, 'LinkedOn/settings.html')
+
+@login_required
+def delete_acc(request):
+    user = request.user
+    user.delete()
+    user.save()
+    
+    return render(request, 'LinkedOn/delete_acc.html')
+    
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('index')
+

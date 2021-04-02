@@ -18,5 +18,8 @@ urlpatterns = [
     path('categories/joblistings/<job_id>/', views.show_joblisting, name='show_joblisting'),
     path('logout/', views.user_logout, name='logout'),
     path('editprofile/', views.edit_profile, name='edit_profile'),
+    path('settings/', views.settings, name='settings'),
+    path('settings/change_password/', views.PasswordsChangeView.as_view(template_name='LinkedOn/change_password.html'), name='change_password'),
+    path('settings/delete_acc/', views.delete_acc, name='delete_acc'),
 
 ]
