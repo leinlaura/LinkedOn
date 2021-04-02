@@ -10,6 +10,13 @@
 {% endblock %}
 
 {% block body_block %}
+    <script>
+        const COMPANY_MAX_LENGTH = {{ COMPANY_MAX_LENGTH }};
+        const WEBSITE_MAX_LENGTH = {{ WEBSITE_MAX_LENGTH }};
+        const ABOUT_MAX_LENGTH = {{ ABOUT_MAX_LENGTH }};
+        const SEARCHING_MAX_LENGTH = {{ SEARCHING_MAX_LENGTH }};
+    </script>
+    <script src="{% static "js/edit_profile.js" %}"></script>
     <!--general forms taken from https://getbootstrap.com/docs/4.0/components/forms/-->
     <form id="user_form" method="post" action="{% url 'LinkedOn:edit_profile' %}" enctype="multipart/form-data">
         {% csrf_token %}
@@ -23,31 +30,30 @@
             <div class="col-md-4" id="middle">
                 <textarea name="first_name" class="form-control" placeholder="First Name" rows="1"></textarea>
                 <textarea name="last_name" class="form-control" placeholder="Last Name" rows="1"></textarea>
-				{% if currentUser.isEmployer %}
-					<textarea id="formCompany" name="company" class="form-control" placeholder="Company" rows="1"></textarea>
-				{% else %}
-					<input name="profileImage" class="form-control form-control-sm" id="formFileSm" type="file" accept="image/*">
-				{% endif %}
                 <textarea name="website" class="form-control" placeholder="Portfolio/ Website" rows="1"></textarea>
-                
-				<button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Update Profile</button>
+                {% if currentUser.isEmployer %}
+                    <textarea id="formCompany" name="company" class="form-control" placeholder="Company" rows="1"></textarea>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Update Profile</button>
+                {% else %}
+                    <input name="profileImage" class="form-control form-control-sm" id="formFileSm" type="file" accept="image/*">
+                {% endif %}
             </div>
 
             <!--right column-->
             <div class="col-md-4" id="right">
-				{% if currentUser.isEmployer == False %}
-					<textarea name="about" class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5"></textarea>
-					<textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10"></textarea>
-					<div class="form-group">
-						<select name="category" class="form-control" id="exampleFormControlSelect1">
-							<option> Select Category</option>
-							{% for c in categories %}
-								<option>{{ c.name }}</option>
-							{% endfor %}
-						</select>
-				{% endif %}
+                {% if not currentUser.isEmployer %}
+                    <textarea name="about" class="form-control" id="sentences" placeholder="Describe yourself in three sentences!" rows="5"></textarea>
+                    <textarea name="searchingInfo" class="form-control" id="describe" placeholder="Who are what are you looking for? Go into detail here!" rows="10"></textarea>
+                    <div class="form-group">
+                    <select name="category" class="form-control" id="exampleFormControlSelect1">
+                        <option> Select Category</option>
+                        {% for c in categories %}
+                            <option>{{ c.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Update Profile</button>
+                {% endif %}
                 </div>
-                
             </div>
         </div>
     </form>

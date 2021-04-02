@@ -19,26 +19,6 @@ $(function () {
         return /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi.test(value);
     });
 
-
-
-    $.validator.addMethod("uniqueUser", function (value, element) {
-        var unique = false;
-
-        $.ajax({
-            url: USERNAME_CHECK_URL,
-            type: 'GET',
-            data: {
-                "email": value,
-            },
-            async: false,
-            success: function(msg) {
-                unique = msg.unique;
-            },
-        });
-
-        return unique;
-    });
-
     $("#user_form").validate({
         rules: {
             first_name: {
