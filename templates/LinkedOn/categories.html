@@ -12,9 +12,10 @@ Search for Categories
 
 {% block body_block %}
 	<!--Search form-->
-	<form>
-	  <input type="search" class="form-control rounded" placeholder="Search..." aria-label="Search"
-		aria-describedby="search-addon"/>
+	<form action="{% url 'LinkedOn:categories' %}" method="POST">
+	 {% csrf_token %}
+	  <input type="text" class="form-control ds-input rounded"  id="search-input" placeholder="Search..." aria-label="Search"
+		name="name" aria-describedby="search-addon"/>
 	</form>
 
 
@@ -25,24 +26,62 @@ Search for Categories
 <h5> To be able to view job listings and profiles associated with categories, please sign in! </h5>
 {% endif %}
 <!--three rows of categories-->
+{% if boolean %}
 <div class="row">
 <div class="col-md-4">
-{% for c1 in first_col %}
-<h2> <a href="{% url 'LinkedOn:show_category' c1.slug %}"> {{ c1.name }} </a> </h2>
+<h2> Profiles </h2>
+{% for p in profiles %}
+            <div class="col-md-4">
+                <a href="{% url 'LinkedOn:show_profile' p.id %}">
+                    <h3> {{ p.first_name }} {{ p.last_name }}</h3>
+                </a>
+            </div>
 {% endfor %}
 </div>
 
 <div class="col-md-4">
-{% for c2 in second_col %}
-<h2> <a href="{% url 'LinkedOn:show_category' c2.slug %}"> {{ c2.name }} </a> </h2>
+<h2> Categories </h2>
+{% for c in categories %}
+<a href="{% url 'LinkedOn:show_category' c.slug %}"> 
+<h3>{{ c.name }} </h3>
+</a>
 {% endfor %}
 </div>
-
 
 <div class="col-md-4">
-{% for c3 in third_col %}
-<h2> <a href="{% url 'LinkedOn:show_category' c3.slug %}"> {{ c3.name }} </a> </h2>
+<h2> Job Listings </h2>
+{% for j in joblistings %}
+<a href="{% url 'LinkedOn:show_joblisting' j.id %}"> 
+        <h3> {{ j.employer.company }} </h3> 
+		<h5> {{ j.description }} </h5>
+		</a> 
 {% endfor %}
 </div>
 </div>
+
+
+
+
+{% else %}
+	<div class="row">
+		<div class="col-md-4">
+		{% for c1 in first_col %}
+		<h2> <a href="{% url 'LinkedOn:show_category' c1.slug %}"> {{ c1.name }} </a> </h2>
+		{% endfor %}
+		</div>
+
+		<div class="col-md-4">
+		{% for c2 in second_col %}
+		<h2> <a href="{% url 'LinkedOn:show_category' c2.slug %}"> {{ c2.name }} </a> </h2>
+		{% endfor %}
+		</div>
+
+
+		<div class="col-md-4">
+		{% for c3 in third_col %}
+		<h2> <a href="{% url 'LinkedOn:show_category' c3.slug %}"> {{ c3.name }} </a> </h2>
+		{% endfor %}
+		</div>
+	</div>
+	{% endif %}
 {% endblock %}
