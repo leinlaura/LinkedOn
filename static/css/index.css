@@ -5,10 +5,6 @@
   padding: 50px;
 }
 
-.carousel-caption{
-	top:30%;
-}
-
 .carousel-caption > p{
   font-size: 18px;
   color:#ffffff!Important;
@@ -34,4 +30,8 @@ p{
 #text{
 	padding: 50px;
 	position: sticky;
+}
+
+#sign{
+	color: #0275d8 !Important;
 }

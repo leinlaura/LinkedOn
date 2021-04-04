@@ -8,7 +8,6 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
-from LinkedOnApp.search_bing import run_query
 import math
 import uuid
 
@@ -106,8 +105,8 @@ def categories(request):
         query_name = request.POST.get('name', None).strip()
         if query_name:
             categories = Category.objects.filter(name__contains=query_name)
-            joblistings = JobListing.objects.filter(description__contains=query_name)
-           # profiles = UserProfile.objects.filter(user.first_name ==query_name).union(UserProfile.objects.filter(user.last_name==query_name))
+            joblistings = JobListing.objects.filter(description__contains=query_name) | JobListing.objects.filter(employer__user__first_name__contains=query_name) | JobListing.objects.filter(employer__user__last_name__contains=query_name) | JobListing.objects.filter(employer__company__contains=query_name)
+            profiles = UserProfile.objects.filter(user__first_name__contains=query_name, isEmployer=False) | UserProfile.objects.filter(user__last_name__contains=query_name) | UserProfile.objects.filter(searchingInfo__contains=query_name) | UserProfile.objects.filter(about__contains=query_name)
             context_dic["categories"] = categories
             context_dic["joblistings"] = joblistings
             context_dic["profiles"] = profiles

@@ -1,7 +1,6 @@
-body{
+body {
 	color: #ffffff !Important;
 }
-	
 
 .form-control{
 	margin: auto;
@@ -14,19 +13,23 @@ h2 {
 	text-align: center;
 	width:100%;
 	margin-top: 50px;
-	color: #ffffff !Important;
 }
 
 h5 {
 	text-align: center;
-	color: #ffffff !Important;
 	margin-top: 20px;
 }
-
-h3{
+	
+h3 {
 	text-align: center;
 	color: #0275d8 !Important;
-	position: relative;
+	white-space: nowrap;
 }
 
+#profiles {
+	padding-left:50px;
+}
+
+
+	
 
