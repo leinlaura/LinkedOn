@@ -8,6 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
+from LinkedOnApp.search_bing import run_query
 import math
 import uuid
 
@@ -100,7 +101,19 @@ def categories(request):
     context_dic["first_col"] = categories[:length_of_col]
     context_dic["second_col"] = categories[length_of_col:2 * length_of_col]
     context_dic["third_col"] = categories[2 * length_of_col:]
-
+    
+    if request.method == "POST":
+        query_name = request.POST.get('name', None).strip()
+        if query_name:
+            categories = Category.objects.filter(name__contains=query_name)
+            joblistings = JobListing.objects.filter(description__contains=query_name)
+           # profiles = UserProfile.objects.filter(user.first_name ==query_name).union(UserProfile.objects.filter(user.last_name==query_name))
+            context_dic["categories"] = categories
+            context_dic["joblistings"] = joblistings
+            context_dic["profiles"] = profiles
+            context_dic["boolean"] = True
+         
+    
     # returns
     return render(request, 'LinkedOn/categories.html', context_dic)
 
@@ -253,4 +266,8 @@ def delete_acc(request):
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
     success_url = reverse_lazy('index')
+    
+
+    
+
 
