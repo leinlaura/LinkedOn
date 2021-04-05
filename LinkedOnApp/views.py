@@ -211,15 +211,18 @@ def create_joblisting(request):
 
 @login_required
 def edit_profile(request):
-    currentUser = UserProfile.objects.get(user=request.user)
+    currentUser = UserProfile.objects.get(user=request.user) #gets current user
     if request.method == 'POST':
         profile_form = UserProfileUpdateForm(request.POST)
         if profile_form.is_valid():
+            #edit fields in User model
             currentUser.user.first_name = request.POST['first_name']
             currentUser.user.last_name = request.POST['last_name']
             currentUser.user.save()
 
+            #edit fields in userProfile model
             currentUser.website = request.POST['website']
+            #employers and jobseekers fill out different info
             if currentUser.isEmployer == True:
                 currentUser.company = request.POST['company']
             else:
@@ -234,9 +237,9 @@ def edit_profile(request):
 
             if 'profileImage' in request.FILES:
                 currentUser.profileImage = request.FILES['profileImage']
-            currentUser.save()
+            currentUser.save() #save profile
 
-            return redirect('/')
+            return redirect('/') #home page
 
     context_dic = {"categories": Category.objects.all(),
                    "COMPANY_MAX_LENGTH": UserProfile.COMPANY_MAX_LENGTH,
@@ -249,16 +252,19 @@ def edit_profile(request):
 
 @login_required
 def settings(request):
-    return render(request, 'LinkedOn/settings.html')
+    return render(request, 'LinkedOn/settings.html') #shows settings page
 
 @login_required
 def delete_acc(request):
+    #deletes logged in user from database
+    #any job postings are deleted automatically
     user = request.user
     user.delete()
     user.save()
     return render(request, 'LinkedOn/delete_acc.html')
     
 class PasswordsChangeView(PasswordChangeView):
+    #password change using built in PasswordChangeView
     form_class = PasswordChangeForm
     success_url = reverse_lazy('index')
 
