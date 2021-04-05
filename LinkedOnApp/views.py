@@ -44,23 +44,32 @@ def signup(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             plain_text_password = user.password
+            # Set the password of the user allowing it to be hashed
             user.set_password(user.password)
             user.save()
 
+            # Don't commit the changes until fields are corrected
             profile = profile_form.save(commit=False)
             profile.user = user
+
+            # Parse isEmployer from the form
             profile.isEmployer = request.POST.get('isEmployer', '[\'off\']') == 'on'
 
             try:
+                # Find the category by name that the user submitted
                 category = Category.objects.get(name=request.POST.get('category'))
                 profile.category = category
             except ObjectDoesNotExist:
                 pass
 
+            # Add the profile image if it was sent
             if 'profileImage' in request.FILES:
                 profile.profileImage = request.FILES['profileImage']
+
+            # Now the profile model can be saved since all fields are updated
             profile.save()
 
+            # Attempt to login as the new registered user
             if attempt_login(request, user.username, plain_text_password):
                 return redirect(reverse('LinkedOn:index'))
             else:
