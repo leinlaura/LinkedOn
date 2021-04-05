@@ -170,13 +170,14 @@ def profiles(request):
 
 
 @login_required
-def show_profile(request, profile_id):
+def show_profile(request, user_id):
     context_dict = {}
     try:
-        profile = UserProfile.objects.get(id=profile_id) #get profile by id
+        user = User.objects.get(id=user_id)
+        profile = UserProfile.objects.get(user=user) #get profile by user
         context_dict["profile"] = profile
 
-    except UserProfile.DoesNotExist:
+    except User.DoesNotExist or UserProfile.DoesNotExist:
         context_dict["profile"] = None
 
     return render(request, 'LinkedOn/show_profile.html', context_dict) #return profile
