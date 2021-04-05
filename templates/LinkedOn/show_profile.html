@@ -12,25 +12,25 @@
 
 {% block body_block %}
     <div class="row">
-		<!--left column-->
+        <!--left column-->
         <div class="col-md-5">
             <h1>{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
-			{% if profile.profileImage %}
-				<img src="{{ profile.profileImage.url }}"  alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
-			{% else %}
-				<img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
-			{% endif %}
+            {% if profile.profileImage %}
+                <img src="{{ profile.profileImage.url }}" alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
+            {% else %}
+                <img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
+            {% endif %}
         </div>
-		<!--right column-->
+        <!--right column-->
         <div class="col-md-7">
-			<!--if employer show company-->
-			{% if profile.isEmployer %}
-				<h2> {{ profile.company }} </h2>
-			<!--else show about and searching info-->
-			{% else %}
-				<h2> {{ profile.about }} </h2>
-				<h5> {{ profile.searchingInfo }} </h5>
-			{% endif %}
+            <!--if employer show company-->
+            {% if profile.isEmployer %}
+                <h2> {{ profile.company }} </h2>
+                <!--else show about and searching info-->
+            {% else %}
+                <h2> {{ profile.about }} </h2>
+                <h5> {{ profile.searchingInfo }} </h5>
+            {% endif %}
             <a type="button" class="btn btn-dark">{{ profile.website }}</a>
             <a type="button" class="btn btn-primary" href="mailto:{{ profile.user.username }}">{{ profile.user.username }}</a>
         </div>

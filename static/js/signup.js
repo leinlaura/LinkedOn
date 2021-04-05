@@ -41,10 +41,10 @@ $(function () {
                 required: true,
                 email: true,
                 maxlength: 150,
-                remote:  {
+                remote: {
                     url: USERNAME_CHECK_URL,
                     type: 'GET',
-                    dataFilter: function(response) {
+                    dataFilter: function (response) {
                         return JSON.parse(response).unique;
                     },
                 },

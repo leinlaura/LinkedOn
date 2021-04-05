@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     $.validator.addMethod("validUrl", function (value, element) {
         return /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi.test(value);
     });
@@ -25,10 +25,10 @@ $(function() {
                 required: true,
                 email: true,
                 maxlength: 150,
-                remote:  {
+                remote: {
                     url: USERNAME_CHECK_URL,
                     type: 'GET',
-                    dataFilter: function(response) {
+                    dataFilter: function (response) {
                         return JSON.parse(response).unique;
                     },
                 },

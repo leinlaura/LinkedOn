@@ -2,91 +2,91 @@
 {% load staticfiles %}
 
 {% block head_block %}
-<link rel="stylesheet" href="{% static "css/categories.css" %}">
+    <link rel="stylesheet" href="{% static "css/categories.css" %}">
 {% endblock %}
 
 {% block title_block %}
-Search for Categories
+    Search for Categories
 {% endblock %}
 
 
 {% block body_block %}
-	<!--Search form-->
-	<form action="{% url 'LinkedOn:categories' %}" method="POST">
-	 {% csrf_token %}
-	  <input type="text" class="form-control ds-input rounded"  id="search-input" placeholder="Search..." aria-label="Search"
-		name="name" aria-describedby="search-addon"/>
-	</form>
+    <!--Search form-->
+    <form action="{% url 'LinkedOn:categories' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" class="form-control ds-input rounded" id="search-input" placeholder="Search..." aria-label="Search"
+               name="name" aria-describedby="search-addon"/>
+    </form>
 
 
-<!--if user isnt logged in prompt to log in to view other content-->
-{% if user.is_authenticated %}
-<h5> Browse by category or search for job listings, profiles and categories! </h5>
-{% else %}
-<h5> To be able to view job listings and profiles associated with categories, please sign in! </h5>
-{% endif %}
+    <!--if user isnt logged in prompt to log in to view other content-->
+    {% if user.is_authenticated %}
+        <h5> Browse by category or search for job listings, profiles and categories! </h5>
+    {% else %}
+        <h5> To be able to view job listings and profiles associated with categories, please sign in! </h5>
+    {% endif %}
 
-<!--if search occured, show results of the search, divided in profiles, categories and joblistings-->
-{% if boolean %}
-<div class="row">
-<div class="col-md-4">
-<!--Profiles-->
-<h2> Profiles </h2>
-{% for p in profiles %}
-            <div class="col-md-4" id="profiles">
-                <a href="{% url 'LinkedOn:show_profile' p.id %}">
-                    <h3> {{ p.user.first_name }} {{ p.user.last_name }}</h3>
-					<img src="{{ p.profileImage.url }}" alt="profile picture" />
-                </a>
+    <!--if search occured, show results of the search, divided in profiles, categories and joblistings-->
+    {% if boolean %}
+        <div class="row">
+            <div class="col-md-4">
+                <!--Profiles-->
+                <h2> Profiles </h2>
+                {% for p in profiles %}
+                    <div class="col-md-4" id="profiles">
+                        <a href="{% url 'LinkedOn:show_profile' p.id %}">
+                            <h3> {{ p.user.first_name }} {{ p.user.last_name }}</h3>
+                            <img src="{{ p.profileImage.url }}" alt="profile picture"/>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
-{% endfor %}
-</div>
 
-<!--Categories-->
-<div class="col-md-4">
-<h2> Categories </h2>
-{% for c in categories %}
-<a href="{% url 'LinkedOn:show_category' c.slug %}"> 
-<h3>{{ c.name }} </h3>
-</a>
-{% endfor %}
-</div>
+            <!--Categories-->
+            <div class="col-md-4">
+                <h2> Categories </h2>
+                {% for c in categories %}
+                    <a href="{% url 'LinkedOn:show_category' c.slug %}">
+                        <h3>{{ c.name }} </h3>
+                    </a>
+                {% endfor %}
+            </div>
 
-<!--Joblistings-->
-<div class="col-md-4">
-<h2> Job Listings </h2>
-{% for j in joblistings %}
-<a href="{% url 'LinkedOn:show_joblisting' j.id %}"> 
-        <h3> {{ j.employer.company }} </h3> 
-		<h5> {{ j.description }} </h5>
-		</a> 
-{% endfor %}
-</div>
-</div>
+            <!--Joblistings-->
+            <div class="col-md-4">
+                <h2> Job Listings </h2>
+                {% for j in joblistings %}
+                    <a href="{% url 'LinkedOn:show_joblisting' j.id %}">
+                        <h3> {{ j.employer.company }} </h3>
+                        <h5> {{ j.description }} </h5>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
 
 
 
-<!--three rows of categories-->
-{% else %}
-	<div class="row">
-		<div class="col-md-4">
-		{% for c1 in first_col %}
-		<h2> <a href="{% url 'LinkedOn:show_category' c1.slug %}"> {{ c1.name }} </a> </h2>
-		{% endfor %}
-		</div>
+        <!--three rows of categories-->
+    {% else %}
+        <div class="row">
+            <div class="col-md-4">
+                {% for c1 in first_col %}
+                    <h2><a href="{% url 'LinkedOn:show_category' c1.slug %}"> {{ c1.name }} </a></h2>
+                {% endfor %}
+            </div>
 
-		<div class="col-md-4">
-		{% for c2 in second_col %}
-		<h2> <a href="{% url 'LinkedOn:show_category' c2.slug %}"> {{ c2.name }} </a> </h2>
-		{% endfor %}
-		</div>
+            <div class="col-md-4">
+                {% for c2 in second_col %}
+                    <h2><a href="{% url 'LinkedOn:show_category' c2.slug %}"> {{ c2.name }} </a></h2>
+                {% endfor %}
+            </div>
 
 
-		<div class="col-md-4">
-		{% for c3 in third_col %}
-		<h2> <a href="{% url 'LinkedOn:show_category' c3.slug %}"> {{ c3.name }} </a> </h2>
-		{% endfor %}
-		</div>
-	</div>
-	{% endif %}
+            <div class="col-md-4">
+                {% for c3 in third_col %}
+                    <h2><a href="{% url 'LinkedOn:show_category' c3.slug %}"> {{ c3.name }} </a></h2>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

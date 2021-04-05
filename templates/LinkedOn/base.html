@@ -51,23 +51,23 @@
                     {% endif %}
                 </div>
             </li>
-			{% if user.is_authenticated %}
-				<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuMyProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Your Profile <!--User profile options-->
-						</a>
-						<div class="dropdown-menu" id="navbarDropdownMenuMyProfile" aria-labelledby="navbarDropdownMenuMyProfile">
-							<!--dropdown list items-->
-							<a class="dropdown-item" href="{% url 'LinkedOn:show_profile' user.id %}">View your profile </a>
-							<a class="dropdown-item" href="{% url 'LinkedOn:edit_profile' %}">Edit your profile</a>
-							<a class="dropdown-item" href="{% url 'LinkedOn:settings' %}">Account Settings</a>
-						</div>
-					</li>
-			{% endif %}
+            {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuMyProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Your Profile <!--User profile options-->
+                    </a>
+                    <div class="dropdown-menu" id="navbarDropdownMenuMyProfile" aria-labelledby="navbarDropdownMenuMyProfile">
+                        <!--dropdown list items-->
+                        <a class="dropdown-item" href="{% url 'LinkedOn:show_profile' user.id %}">View your profile </a>
+                        <a class="dropdown-item" href="{% url 'LinkedOn:edit_profile' %}">Edit your profile</a>
+                        <a class="dropdown-item" href="{% url 'LinkedOn:settings' %}">Account Settings</a>
+                    </div>
+                </li>
+            {% endif %}
             <!-- sign in and sign out buttons-->
             {% if user.is_authenticated %}
                 <a type="button" id="logout" href="{% url 'LinkedOn:logout' %}" class="btn btn-primary">Log Out</a>
-				</li>		
+                </li>
             {% else %}
                 <a type="button" id="signin" href="{% url 'LinkedOn:signin' %}" class="btn btn-light">Sign In</a>
                 <a type="button" id="signup" href="{% url 'LinkedOn:signup' %}" class="btn btn-primary">Sign Up</a>

@@ -1,28 +1,28 @@
-h2{
-	padding-bottom:5px;
-	color: #0275d8 !Important;
+h2 {
+    padding-bottom: 5px;
+    color: #0275d8 !Important;
 }
 
-h1{
-	padding-left:40px;
-	padding-top: 20px;
-	color: #ffffff !Important;
+h1 {
+    padding-left: 40px;
+    padding-top: 20px;
+    color: #ffffff !Important;
 }
 
 img {
-	width: 80%;
-	position: sticky;
+    width: 80%;
+    position: sticky;
 }
 
-h5{
-	padding-left: 40px;
-	padding-top: 5px;
-	color: #ffffff !Important;
-	width: 80%;
-	position: sticky;
+h5 {
+    padding-left: 40px;
+    padding-top: 5px;
+    color: #ffffff !Important;
+    width: 80%;
+    position: sticky;
 }
 
-.row{
-	padding-top: 30px;
-	padding-left: 30px;
+.row {
+    padding-top: 30px;
+    padding-left: 30px;
 }
