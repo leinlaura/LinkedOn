@@ -15,7 +15,7 @@
         <!--iterate through profiles and show name, image and about section-->
         {% for p in profiles %}
             <div class="col-md-4">
-                <a href="{% url 'LinkedOn:show_profile' p.id %}">
+                <a href="{% url 'LinkedOn:show_profile' p.user.id %}">
                     <h2> {{ p.user.first_name }} {{ p.user.last_name }}</h2>
                     <!--if profileImage exists, show it; else show alternative image-->
                     {% if p.profileImage %}
