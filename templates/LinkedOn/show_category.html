@@ -13,12 +13,17 @@
 <div class="text">
 <h1> {{ category.name }} </h1>
 
+<!--show profiles with the selected category-->
 <div class="row">
 {% for p in profiles %}
 		<div class="col-md-4">
 		<a href="{% url 'LinkedOn:show_profile' p.id %}">
         <h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
-		<img src="{{ p.profileImage.url }}" alt="profile picture" />
+		{% if p.profileImage %}
+            <img src="{{ p.profileImage.url }}" altsrc="{% static 'images/template_profile.png' %}" alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
+        {% else %}
+            <img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
+        {% endif %}
 		<h5> {{ p.about }} </h5>
 		</a>
 		</div>

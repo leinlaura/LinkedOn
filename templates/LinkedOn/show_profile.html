@@ -12,6 +12,7 @@
 
 {% block body_block %}
     <div class="row">
+		<!--left column-->
         <div class="col-md-5">
             <h1>{{ profile.user.first_name }} {{ profile.user.last_name }} </h1>
 			{% if profile.profileImage %}
@@ -20,10 +21,12 @@
 				<img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
 			{% endif %}
         </div>
-
+		<!--right column-->
         <div class="col-md-7">
+			<!--if employer show company-->
 			{% if profile.isEmployer %}
 				<h2> {{ profile.company }} </h2>
+			<!--else show about and searching info-->
 			{% else %}
 				<h2> {{ profile.about }} </h2>
 				<h5> {{ profile.searchingInfo }} </h5>
