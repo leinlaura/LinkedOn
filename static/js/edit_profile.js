@@ -1,20 +1,4 @@
 $(function () {
-    $('#formCompany').hide();
-
-    $("#jobseeker").click(function () {
-        $("#right").show();
-        $('#formFileSm').show();
-        $('#formCompany').hide();
-        $('#submit').appendTo('#right');
-    });
-
-    $("#employer").click(function () {
-        $("#right").hide();
-        $('#formFileSm').hide();
-        $('#formCompany').show();
-        $('#submit').appendTo('#middle');
-    });
-
     $.validator.addMethod("validUrl", function (value, element) {
         return /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi.test(value);
     });
@@ -32,7 +16,7 @@ $(function () {
             company: {
                 required: {
                     depends: function (element) {
-                        return $("#employer").is(":checked");
+                        return IS_EMPLOYER;
                     },
                 },
                 maxlength: COMPANY_MAX_LENGTH,
@@ -49,10 +33,6 @@ $(function () {
                     },
                 },
             },
-            password: {
-                required: true,
-                maxlength: 30,
-            },
             website: {
                 required: false,
                 maxlength: WEBSITE_MAX_LENGTH,
@@ -64,7 +44,7 @@ $(function () {
             about: {
                 required: {
                     depends: function (element) {
-                        return $("#jobseeker").is(":checked");
+                        return !IS_EMPLOYER;
                     },
                 },
                 maxlength: ABOUT_MAX_LENGTH,
@@ -72,7 +52,7 @@ $(function () {
             searchingInfo: {
                 required: {
                     depends: function (element) {
-                        return $("#jobseeker").is(":checked");
+                        return !IS_EMPLOYER;
                     },
                 },
                 maxlength: SEARCHING_MAX_LENGTH,
@@ -80,7 +60,7 @@ $(function () {
             category: {
                 required: {
                     depends: function (element) {
-                        return $("#jobseeker").is(":checked");
+                        return !IS_EMPLOYER;
                     },
                 },
             },
@@ -99,4 +79,3 @@ $(function () {
         },
     });
 });
-

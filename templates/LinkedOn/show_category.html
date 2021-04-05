@@ -2,33 +2,33 @@
 {% load staticfiles %}
 
 {% block head_block %}
-<link rel="stylesheet" href="{% static "css/show_category.css" %}">
+    <link rel="stylesheet" href="{% static "css/show_category.css" %}">
 {% endblock %}
 
 {% block title_block %}
-{{ category.name }} 
+    {{ category.name }}
 {% endblock %}
 
 {% block body_block %}
-<div class="text">
-<h1> {{ category.name }} </h1>
+    <div class="text">
+        <h1> {{ category.name }} </h1>
 
-<!--show profiles with the selected category-->
-<div class="row">
-{% for p in profiles %}
-		<div class="col-md-4">
-		<a href="{% url 'LinkedOn:show_profile' p.id %}">
-        <h2> {{ p.user.first_name }}  {{ p.user.last_name }}</h2> 
-		{% if p.profileImage %}
-            <img src="{{ p.profileImage.url }}" altsrc="{% static 'images/template_profile.png' %}" alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
-        {% else %}
-            <img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
-        {% endif %}
-		<h5> {{ p.about }} </h5>
-		</a>
-		</div>
-{% endfor %}
-</div>
+        <!--show profiles with the selected category-->
+        <div class="row">
+            {% for p in profiles %}
+                <div class="col-md-4">
+                    <a href="{% url 'LinkedOn:show_profile' p.id %}">
+                        <h2> {{ p.user.first_name }} {{ p.user.last_name }}</h2>
+                        {% if p.profileImage %}
+                            <img src="{{ p.profileImage.url }}" altsrc="{% static 'images/template_profile.png' %}" alt="profile picture" onerror="this.src = $(this).attr('altsrc');"/>
+                        {% else %}
+                            <img src="{% static 'images/template_profile.png' %}" alt="profile picture"/>
+                        {% endif %}
+                        <h5> {{ p.about }} </h5>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
 
 
 {% endblock %}

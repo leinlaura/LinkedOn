@@ -1,27 +1,27 @@
-body{
-	color: #ffffff !Important;
+body {
+    color: #ffffff !Important;
 }
 
 
 h1 {
-	padding-left: 30px;
-	padding-top: 20px;
-	padding-bottom:10px;
-	
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
 }
 
 img {
-	width: 80%;
-	position: sticky;
-	padding-left: 30px;
+    width: 80%;
+    position: sticky;
+    padding-left: 30px;
 }
 
-h2{
-	padding-top: 100px;
-	width: 90%;
-	padding-bottom: 50px;
+h2 {
+    padding-top: 100px;
+    width: 90%;
+    padding-bottom: 50px;
 }
 
-h5{
-	padding-bottom: 50px;
+h5 {
+    padding-bottom: 50px;
 }

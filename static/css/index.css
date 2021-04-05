@@ -1,37 +1,37 @@
 
 .carousel {
-  width: 100%;
-  position: sticky;
-  padding: 50px;
+    width: 100%;
+    position: sticky;
+    padding: 50px;
 }
 
-.carousel-caption > p{
-  font-size: 18px;
-  color:#ffffff!Important;
+.carousel-caption > p {
+    font-size: 18px;
+    color: #ffffff !Important;
 }
 
-.carousel-caption > h2{
-  font-size: 50px;
-  color:#ffffff !Important;
+.carousel-caption > h2 {
+    font-size: 50px;
+    color: #ffffff !Important;
 }
 
 body {
-	color: #ffffff;
+    color: #ffffff;
 }
 
-h1{
-	font-size: 50px;
+h1 {
+    font-size: 50px;
 }
 
-p{
-	font-size: 20px;
+p {
+    font-size: 20px;
 }
 
-#text{
-	padding: 50px;
-	position: sticky;
+#text {
+    padding: 50px;
+    position: sticky;
 }
 
-#sign{
-	color: #0275d8 !Important;
+#sign {
+    color: #0275d8 !Important;
 }

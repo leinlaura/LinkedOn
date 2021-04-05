@@ -16,7 +16,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'company', 'profileImage', 'about', 'searchingInfo', 'isEmployer',)
-        
+
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -27,4 +28,3 @@ class UserProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'company', 'profileImage', 'about', 'searchingInfo',)
-        

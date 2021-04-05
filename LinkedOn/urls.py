@@ -20,11 +20,9 @@ from django.urls import path
 from django.urls import include
 from LinkedOnApp import views
 
-
 urlpatterns = [
-    path('', views.index, name= 'index'),
-    path('LinkedOn/', include('LinkedOnApp.urls')),
-    # The above maps any URLs starting with LinkedOn/ to be handled by LinkedOn.
-    path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-
+                  path('', views.index, name='index'),
+                  path('LinkedOn/', include('LinkedOnApp.urls')),
+                  # The above maps any URLs starting with LinkedOn/ to be handled by LinkedOn.
+                  path('admin/', admin.site.urls),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,32 +1,32 @@
 h1 {
-	padding-left: 40px;
-	padding-top: 20px;
-	color: #ffffff !Important;
+    padding-left: 40px;
+    padding-top: 20px;
+    color: #ffffff !Important;
 }
 
-h2{
-	padding-left:40px;
-	padding-bottom:5px;
-	color: #0275d8 !Important;
+h2 {
+    padding-left: 40px;
+    padding-bottom: 5px;
+    color: #0275d8 !Important;
 }
 
 img {
-	width: 80%;
-	position: sticky;
-	padding-left: 40px;
-	padding-right: 50px;
+    width: 80%;
+    position: sticky;
+    padding-left: 40px;
+    padding-right: 50px;
 }
 
-h5{
-	padding-left: 40px;
-	padding-top: 5px;
-	color: #ffffff !Important;
-	width: 80%;
-	position: sticky;
+h5 {
+    padding-left: 40px;
+    padding-top: 5px;
+    color: #ffffff !Important;
+    width: 80%;
+    position: sticky;
 }
 
 .column {
-  float: left;
-  width: 33.33%;
+    float: left;
+    width: 33.33%;
 }
 	

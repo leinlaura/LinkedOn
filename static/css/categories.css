@@ -1,33 +1,33 @@
 body {
-	color: #ffffff !Important;
+    color: #ffffff !Important;
 }
 
-.form-control{
-	margin: auto;
-	width: 30%;
-	margin-top: 20px;
+.form-control {
+    margin: auto;
+    width: 30%;
+    margin-top: 20px;
 }
 
 h2 {
-	position: relative;
-	text-align: center;
-	width:100%;
-	margin-top: 50px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
 }
 
 h5 {
-	text-align: center;
-	margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
-	
+
 h3 {
-	text-align: center;
-	color: #0275d8 !Important;
-	white-space: nowrap;
+    text-align: center;
+    color: #0275d8 !Important;
+    white-space: nowrap;
 }
 
 #profiles {
-	padding-left:50px;
+    padding-left: 50px;
 }
 
 
