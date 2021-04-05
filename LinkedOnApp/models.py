@@ -7,6 +7,7 @@ class Category(models.Model):
     
     name = models.CharField(max_length=NAME_MAX_LENGTH, 
                             unique=True)
+    #Slug for urls
     slug = models.SlugField()
     
     def save(self, *args, **kwargs):
@@ -46,6 +47,7 @@ class JobListing(models.Model):
     ID_MAX_LENGTH = 128
     DESCRIPTION_MAX_LENGTH = 1000
     
+    #Posting is connected to a specific UserProfile where isEmployer = True
     job_id = models.CharField(max_length=ID_MAX_LENGTH, unique=True)
     employer = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True)

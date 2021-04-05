@@ -8,6 +8,7 @@ from django.core.files import File
 from LinkedOnApp.models import UserProfile, JobListing, Category
 
 def populate():
+    # List of categories
     categories = ['Data Science', 'Software Engineering',
                   'Business Management', 'Consulting',
                   'Management', 'Internships',
@@ -15,6 +16,7 @@ def populate():
                   'Engineering', 'Hospitality',
                   'Education', 'Retail']
     
+    # Employer acctount details, stored in list of dictionaries
     employers = [
             {'username' : 'ctownsend@outlookmail.com',
              'password' : 'hamster1989',
@@ -60,6 +62,7 @@ def populate():
              'company' : 'Villa Donna'}
             ]
     
+    # Jobseeker account details, stored in list of dictionaries
     jobseekers = [
             {'username' : 'awhite@superdupermail.com',
              'password' : '3494nabdf89',
@@ -223,6 +226,7 @@ def populate():
              'profileimage' : 'jordansimpson'},
              ]
     
+    # List of job postings, stored in list of dictionaries
     jobpostings = [
             {'id' : '00001',
              'poster' : 'donnasheridan@geemail.com',
@@ -243,21 +247,26 @@ def populate():
                              "experience in the hospitality sector."}
             ]
     
+    #Create categories
     for cat in categories:
         create_category(cat)
-            
+     
+    #Create employer
     for e in employers:
         u = create_user(e)
         create_employer(e, u)
         
+    #Create job seeker
     for j in jobseekers:
         u = create_user(j)
         create_jobseeker(j, u)
-        
+     
+    #Create job posting
     for jp in jobpostings:
         create_jobposting(jp)
     
 def create_user(data):
+    #Creates user, which is a part of the UserProfile
     print("creating " + data['username'] + "...")
     user = User.objects.create_user(data['username'], data['username'], 
                                     data['password'])
@@ -285,6 +294,7 @@ def create_jobseeker(data, u):
                                                 data['searchinginfo'],
                                                 isEmployer=False)[0]
     
+    #Jobseeker image is taken from populationimages folder
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     filepath = os.path.join(THIS_FOLDER +  '\\populationimages\\' 
                             + data['profileimage'] + '.PNG')
