@@ -203,7 +203,7 @@ def create_joblisting(request):
         category = Category.objects.get(name=request.POST.get('category')) #get category
         employer = currentUser #set employer to current user
         joblisting = JobListing(job_id=uuid.uuid4(), description=description, 
-                                category=category, employer=employer) #get joblisting
+                                category=category, employer=employer) #create joblisting; setting id to unique number
         joblisting.save() #save joblisting
 
     return render(request, 'LinkedOn/create_joblisting.html', {"categories": Category.objects.all()}) #return with categories list
