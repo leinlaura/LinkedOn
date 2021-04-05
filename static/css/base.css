@@ -11,8 +11,8 @@
 }
 
 #logout{
-	position:relative;
-	left: 350px;
+	position: absolute;
+	left: 400px;
 	font-size:20px;
 }
 
