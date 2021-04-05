@@ -106,7 +106,7 @@ def categories(request):
         if query_name:
             categories = Category.objects.filter(name__contains=query_name)
             joblistings = JobListing.objects.filter(description__contains=query_name) | JobListing.objects.filter(employer__user__first_name__contains=query_name) | JobListing.objects.filter(employer__user__last_name__contains=query_name) | JobListing.objects.filter(employer__company__contains=query_name)
-            profiles = UserProfile.objects.filter(user__first_name__contains=query_name, isEmployer=False) | UserProfile.objects.filter(user__last_name__contains=query_name) | UserProfile.objects.filter(searchingInfo__contains=query_name) | UserProfile.objects.filter(about__contains=query_name)
+            profiles = UserProfile.objects.filter(user__first_name__contains=query_name, isEmployer=False) | UserProfile.objects.filter(user__last_name__contains=query_name, isEmployer=False) | UserProfile.objects.filter(searchingInfo__contains=query_name, isEmployer=False) | UserProfile.objects.filter(about__contains=query_name, isEmployer = False)
             context_dic["categories"] = categories
             context_dic["joblistings"] = joblistings
             context_dic["profiles"] = profiles

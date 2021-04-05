@@ -133,6 +133,5 @@ dmypy.json
 media/profile_images/*
 !media/profile_images/.gitkeep.txt
 
-#bing search key
-*.key
+
 
