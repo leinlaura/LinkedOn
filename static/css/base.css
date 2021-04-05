@@ -1,0 +1,48 @@
+#signin {
+    position: relative;
+    left: 400px;
+    font-size: 20px;
+}
+
+#signup {
+    position: relative;
+    left: 400px;
+    font-size: 20px;
+}
+
+#logout {
+    position: relative;
+    left: 350px;
+    font-size: 20px;
+}
+
+#LinkedOn {
+    color: #0275d8;
+}
+
+.navbar-nav {
+    position: sticky;
+    left: 700px;
+    font-size: 20px;
+    font-color: #000000;
+    z-index: 10;
+}
+
+.navbar-brand {
+    position: relative;
+    font-size: 30px;
+}
+
+body {
+    background-color: #000000;
+    font-family: "Crimson-Text";
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
