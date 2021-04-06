@@ -279,8 +279,8 @@ def delete_acc(request):
     # deletes logged in user from database
     # any job postings are deleted automatically
     user = request.user
+    logout(request)
     user.delete()
-    user.save()
     return render(request, 'LinkedOn/delete_acc.html')
 
 
