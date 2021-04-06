@@ -24,9 +24,11 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'h8vu#)-lo2is3akk!tm_3ctg)5s+uzyi5%*lv!^%eqp+l!7bfi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://linkedon.eu.pythonanywhere.com/',
+]
 
 # Application definition
 
