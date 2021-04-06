@@ -1,8 +1,11 @@
 $(function () {
+
+    // Add a validation method that checks if a given url is correct
     $.validator.addMethod("validUrl", function (value, element) {
         return /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi.test(value);
     });
 
+    // Setup client-side form validation of the user-form
     $("#user_form").validate({
         rules: {
             first_name: {
