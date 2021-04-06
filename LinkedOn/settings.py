@@ -26,7 +26,7 @@ SECRET_KEY = 'h8vu#)-lo2is3akk!tm_3ctg)5s+uzyi5%*lv!^%eqp+l!7bfi'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 # Keep in debug for local machine testing
-DEBUG = False
+DEBUG = True
 
 # Add host 'https://linkedon.eu.pythonanywhere.com/' for production release
 ALLOWED_HOSTS = []
