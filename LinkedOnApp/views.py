@@ -124,6 +124,11 @@ def categories(request):
             context_dic["joblistings"] = joblistings
             context_dic["profiles"] = profiles
             context_dic["boolean"] = True
+            
+    else:
+        context_dic["categories"] = None
+        context_dic["joblistings"] = None
+        context_dic["profiles"] = None
 
     # returns
     return render(request, 'LinkedOn/categories.html', context_dic)

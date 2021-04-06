@@ -5,6 +5,7 @@ import re
 import importlib
 from django.test import TestCase
 from django.urls import reverse, resolve
+from population_script import populate
 from LinkedOnApp.models import UserProfile, Category, JobListing
 from LinkedOnApp.forms import UserForm, UserProfileForm, UserUpdateForm, UserProfileUpdateForm
 from LinkedOn import settings
@@ -213,12 +214,12 @@ class LinkedOn_DatabaseConfigurationTests(TestCase):
         """
         Does the DATABASES settings variable exist, and does it have a default configuration?
         """
-        self.assertTrue(settings.DATABASES, f"{FAILURE_HEADER}Your project's settings module does not have a DATABASES variable, which is required. Check the start of Chapter 5.{FAILURE_FOOTER}")
-        self.assertTrue('default' in settings.DATABASES, f"{FAILURE_HEADER}You do not have a 'default' database configuration in your project's DATABASES configuration variable. Check the start of Chapter 5.{FAILURE_FOOTER}")
+        self.assertTrue(settings.DATABASES, f"{FAILURE_HEADER}Your project's settings module does not have a DATABASES variable.{FAILURE_FOOTER}")
+        self.assertTrue('default' in settings.DATABASES, f"{FAILURE_HEADER}No default database configuration{FAILURE_FOOTER}")
 
     def test_gitignore_for_database(self):
         """
-        If you are using a Git repository and have set up a .gitignore, checks to see whether the database is present in that file.
+        Check whether database is in gitignore.
         """
         git_base_dir = os.popen('git rev-parse --show-toplevel').read().strip()
 
@@ -236,7 +237,6 @@ class LinkedOn_DatabaseConfigurationTests(TestCase):
 class LinkedOn_PopulationScriptTests(TestCase):
     """
     Tests whether the population script puts the expected data into a test database.
-    All values that are explicitly mentioned in the book are tested.
     """
 
     def setUp(self):
@@ -244,15 +244,14 @@ class LinkedOn_PopulationScriptTests(TestCase):
         Imports and runs the population script, calling the populate() method.
         """
         try:
-            import populate_linkedon
+            import population_script
         except ImportError:
             raise ImportError(f"{FAILURE_HEADER}Population script could not be imported.{FAILURE_FOOTER}")
 
-        if 'populate' not in dir(populate_linkedon):
-            raise NameError(f"{FAILURE_HEADER}The populate() function does not exist in the populate_linkedon module. This is required.{FAILURE_FOOTER}")
+        if 'populate' not in dir(population_script):
+            raise NameError(f"{FAILURE_HEADER}The populate() function does not exist in the population_script module{FAILURE_FOOTER}")
 
-        # Call the population script -- any exceptions raised here do not have fancy error messages to help readers.
-        populate_linkedon.populate()
+        population_script.populate()
 
     def test_categories(self):
         """
@@ -262,9 +261,9 @@ class LinkedOn_PopulationScriptTests(TestCase):
         categories_len = len(categories)
         categories_strs = map(str, categories)
 
-        self.assertEqual(categories_len, 12, f"{FAILURE_HEADER}Expecting 12 categories to be created from the populate_linkedon module; found {categories_len}.{FAILURE_FOOTER}")
-        self.assertTrue('Data Science' in categories_strs, f"{FAILURE_HEADER}The category 'Data Science' was expected but not created by populate_linkedon.{FAILURE_FOOTER}")
-        self.assertTrue('Nursing' in categories_strs, f"{FAILURE_HEADER}The category 'Nursing' was expected but not created by populate_linkedon.{FAILURE_FOOTER}")
+        self.assertEqual(categories_len, 12, f"{FAILURE_HEADER}Expecting 12 categories to be created from the population script; found {categories_len}.{FAILURE_FOOTER}")
+        self.assertTrue('Data Science' in categories_strs, f"{FAILURE_HEADER}The category 'Data Science' was expected but not created by population_script.{FAILURE_FOOTER}")
+        self.assertTrue('Nursing' in categories_strs, f"{FAILURE_HEADER}The category 'Nursing' was expected but not created by population_script.{FAILURE_FOOTER}")
 
     def test_joblistings(self):
         """
@@ -273,7 +272,7 @@ class LinkedOn_PopulationScriptTests(TestCase):
         joblistings = JobListing.objects.filter()
         joblistings_len = len(joblistings)
 
-        self.assertEqual(joblistings_len, 3, f"{FAILURE_HEADER}Expecting 3 joblistings to be created from the populate_linkedon module; found {joblistings_len}.{FAILURE_FOOTER}")
+        self.assertEqual(joblistings_len, 3, f"{FAILURE_HEADER}Expecting 3 joblistings to be created from the population_script module; found {joblistings_len}.{FAILURE_FOOTER}")
 
     def test_profiles(self):
         """
@@ -282,4 +281,50 @@ class LinkedOn_PopulationScriptTests(TestCase):
         profiles = UserProfile.objects.filter()
         profiles_len = len(profiles)
 
-        self.assertEqual(profiles_len, 21, f"{FAILURE_HEADER}Expecting 21 profiles to be created from the populate_linkedon module; found {profiles_len}.{FAILURE_FOOTER}")
+        self.assertEqual(profiles_len, 21, f"{FAILURE_HEADER}Expecting 21 profiles to be created from the population_script module; found {profiles_len}.{FAILURE_FOOTER}")
+        
+class LinkedOn_Show_CategoryViewsTests(TestCase):
+    """
+        Testing of views
+    """
+    def setUp(self):
+        populate()
+        self.response = self.client.get(reverse('LinkedOn:show_category', kwargs={'category_name_slug': 'data-science'}))
+        self.content = self.response.content.decode()
+    
+    def test_slug_functionality(self):
+        """
+        Runs a simple test by changing the name.
+        """
+        category = Category.objects.get_or_create(name='Data Science')[0]
+        category.name = "this is new"
+        category.save()
+
+        self.assertEquals('this-is-new', category.slug, f"{FAILURE_HEADER}the slug attribute was not updated correctly. {FAILURE_FOOTER}")
+
+    def test_context_dictionary(self):
+        """
+        tests whether the context dictionary is passed correctly
+        """
+        data_science_category = Category.objects.get_or_create(name='Data Science')
+        profiles_list = list(UserProfile.objects.filter(category=data_science_category))
+        
+       # self.assertTrue('category' in self.response.context, f"{FAILURE_HEADER}The 'category' variable is not in the context dictionary{FAILURE_FOOTER}")
+        self.assertTrue('profiles' in self.response.context, f"{FAILURE_HEADER}The 'profiles' category is not in the context_dictionary{FAILURE_FOOTER}")
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
